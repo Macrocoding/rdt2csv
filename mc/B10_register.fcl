@@ -1,0 +1,136 @@
+lifeset CORE;
+
+// Register and validate ranges
+phase register = 10;
+
+in phase register {
+	shared lookup_s of Record recordsMap;
+	do {
+		if (outputName.text.length () == 0) {
+			system ().msg << "Error: output file not declared" << endl;
+			signalError();
+		}
+		if (globalType.text.length () == 0) {
+			system ().msg << "Error: globalType not declared" << endl;
+			signalError();
+		}
+	}
+}
+
+extend class Record {
+	in phase register {
+		shared lookup_s of Field fieldsMap;
+		shared link of Field keyField;
+		do {
+			lset.recordsMap.set (recordId, this);
+			if (deletionMarkers.count () == 0) {
+				if (count.value != 1) { 
+					system().msg << "Error, record " << recordId << " has no deletion markers" << endl;
+				}
+			}
+			else {
+				if (count.value == 1) { 
+					system().msg << "Error, record " << recordId << " has deletion markers that are not allowed on 1-instance records" << endl;
+				}
+			}
+		}
+	}
+}
+
+extend class Field {
+	in phase register {
+		shared lookup_s of Enumeration enumsByName;
+		shared lookup_i of Enumeration enumsByValue;
+		do {
+			upscan (Record).fieldsMap.set (fieldId, this);
+			
+			// If field size is greater than 8, it must be a multiple of 8 octet aligned
+			if (lengthBits.value > 8) {
+				if (lengthBits.value %% 8 != 0) {
+					system().msg << "Error: bit size " << lengthBits << " is greater than 8 but not a multiple of exact octets" << endl;
+					signalError ();
+				}
+				if (offsetBits.value %% 8 != 0) {
+					system().msg << "Error: bit size " << lengthBits << " is greater than 8 but offset " << offsetBits << " is not octet aligned" << endl;
+					signalError ();
+				}
+			}
+			
+			// Register the key field
+			if (isKey) {
+				if (upscan(Record).keyField.valid()) {
+					system().msg << "Error, dupe key field (" << upscan(Record).keyField.fieldId << " and " << fieldId << ")" << endl;
+					signalError();
+				}
+				else {
+					upscan(Record).keyField.set(this);
+				}
+			}
+		}	
+	}
+}
+
+extend class Enumeration {
+	in phase register do {
+		upscan(Field).enumsByName.set (enumText, this);
+		upscan(Field).enumsByValue.set (enumValue, this);
+	}
+}
+
+extend class FieldTypeUnicode {
+	in phase register do {
+		// Verify that unicode size is a multiple of 16 bits
+		var LocInt size = upscan(Field).lengthBits;
+		if (size.value %% 8 == 0 && size.value %% 16 != 0) {
+			system().msg << "Error: unicode size " << size << " is not multiple of 16 bits" << endl;
+			signalError ();
+		}
+		if (upscan(Field).repetitions.value > 1) {
+			system().msg << "Error: repetitions " << upscan(Field).repetitions << " not allowed for unicode" << endl;
+			signalError ();
+		}
+	}
+}
+
+extend class FieldTypeBCDBase {
+	in phase register do {
+		if (upscan(Field).repetitions.value > 1) {
+			system().msg << "Error: repetitions " << upscan(Field).repetitions << " not allowed for BCD" << endl;
+			signalError ();
+		}
+	}
+}
+
+
+extend class FieldTypeAscii {
+	in phase register do {
+		// Verify that unicode size is a multiple of 8 bits
+		var LocInt size = upscan(Field).lengthBits;
+		if (size.value %% 8 != 0) {
+			system().msg << "Error: ascii size " << size << " is not multiple of 8 bits" << endl;
+			signalError ();
+		}
+	}
+}
+
+extend class DeletionMarker {
+	in phase register do {
+		// Verify that size is <=8 bits
+		var LocInt size = lengthBits;
+		if (size.value > 8) {
+			system().msg << "Error: deletion marker size " << size << " is bigger than 8 bits" << endl;
+			signalError ();
+		}
+	}
+}
+
+extend class FixedEncoding {
+	in phase register do {
+		// Verify that size is <=8 bits
+		var LocInt size = lengthBits;
+		if (size.value > 8) {
+			system().msg << "Error: fixed encoding size " << size << " is bigger than 8 bits" << endl;
+			signalError ();
+		}
+	}
+}

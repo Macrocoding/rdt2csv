@@ -1,0 +1,266 @@
+lifeset CORE;
+
+extend class Record {
+	in phase generate {
+		shared Void genStruct (out TextStream hFile) const {
+			var Int fieldsCount = 0;
+			var Int i;
+			for (i=0; i<fields.count(); i++) {
+				if (fields.get(i).repetitions.value > 1) {fieldsCount+=fields.get(i).repetitions.value;}
+				else {fieldsCount++;}
+			}
+		
+			hFile << endl <<
+				%F%1/* Macros for record  %0«recordId»%1 */
+%f%0				%F%1#define OFFSET_%0«recordId»%1 %0«%foffsetOctets%F»%1
+%f%0				%F%1#define LENGTH_%0«recordId»%1 %0«%flengthOctets%F»%1
+%f%0				%F%1#define COUNT_%0«recordId»%1 %0«%fcount%F»%1
+%f%0				%F%1#define FIELDS_%0«recordId»%1 %0«fieldsCount»%1
+%f%0				%F%1
+%f%0				%F%1/* Structure for record %0«recordId»%1 */
+%f%0				%F%1typedef struct {
+%f%0			%F;
+%f
+			hFile.incIndent ();%F
+%f			%Ffor (i=0; i<fields.count (); i++) {
+%f			%F	fields.get (i).genStruct (hFile);
+%f			%F}
+%f			hFile.decIndent ();%F
+%f			%F
+%f			%FhFile <<
+%f			%F	%1} T_%0«recordId»%1;
+%f%0				%F%1
+%f%0				%F%1extern FieldDescriptor DESC_%0«recordId»%1 [FIELDS_%0«recordId»%1];
+%f%0			%F;%f
+		}
+
+		/*---------------------------------------------------------------------
+			GENERATE ENUM AND FIELD DESCRIPTORS
+		---------------------------------------------------------------------*/
+		shared Void genFieldDescriptor (out TextStream cFile) const {
+			%Fvar Int i;
+%f			%Ffor (i=0; i<fields.count (); i++) {
+%f			%F	fields.get (i).genEnumerationMap (cFile);
+%f			%F}
+%f			cFile << endl <<
+				%F%1/* Field description table for record %0«recordId»%1 */
+%f%0				%F%1FieldDescriptor DESC_%0«recordId»%1 [FIELDS_%0«recordId»%1] = {
+%f%0			;
+			cFile.incIndent ();
+			%Ffor (i=0; i<fields.count (); i++) {
+%f				%Fvar String binType = fields.get (i).getBinType ();
+%f				%Fvar Int reps = fields.get (i).repetitions.value;
+%f				%Fif (reps < 1) {reps=1;}
+%f				%Fvar Int j;
+%f				%Ffor (j=0; j<reps; j++) {
+%f				%F	var String fieldName = fields.get (i).getFieldName (j);
+%f			%F		cFile << %1{0x%0«String::formatInt (fieldName.%fgetLowerCase ()%F.calcCrc32 (), 16, 8)»%1, %0«binType»%1, "%0«fieldName»%1", %0«fields.get (i).enums.count ()»%1, %0«fields.get (i).getEnumerationMapName ()»%1}%0;
+%f					%Fif (j+1<reps) {cFile << "," << endl;}
+%f				%F}
+%f				%Fif (i+1<fields.count ()) {cFile << ",";}
+%f				%FcFile << endl;
+%f			%F}
+%f			cFile.decIndent ();
+			cFile << %F%1};%0 << endl;%f
+		}
+	}
+}%F
+
+in phase generate {
+	shared Void genGlobalStruct (out TextStream hFile) const {
+		hFile << endl <<
+			%1/* Global structure */
+%0			%1typedef struct {
+%0		;
+		var Int i;
+		for (i=0; i<recordsMap.count (); i++) {
+			hFile << %1	T_%0«recordsMap.getAt (i).recordId»%1 %0«recordsMap.getAt (i).recordId;
+			if (recordsMap.getAt (i).count.value > 1) {
+				hFile << %1[COUNT_%0«recordsMap.getAt (i).recordId»%1]%0;
+			}
+			hFile << %1;%0 << endl;
+			if (recordsMap.getAt (i).count.value > 1) {
+				hFile << %1	unsigned %0«recordsMap.getAt (i).recordId»%1_COUNT;%0 << endl;
+			}
+			hFile << endl;
+		}
+		hFile << 
+			%1} %0«globalType»%1;
+%0			%1
+%0			%1/* Decode a binary file; its size must be FILE_SIZE_%0«globalType»%1 */
+%0			%1extern void decodeBinary_%0«globalType»%1 (const t_buffer* buffer, %0«globalType»%1* container);
+%0			%1
+%0			%1/* Encode a binary file; its size must be FILE_SIZE_%0«globalType»%1 */
+%0			%1extern void encodeBinary_%0«globalType»%1 (t_buffer* buffer, const %0«globalType»%1* container);
+%0		;
+	}
+
+	shared Void genGlobalFuncs (out TextStream cFile) const {
+		var Int i;
+		var Int j;
+		
+		cFile << endl <<
+			%1/* Decode a binary file; its size must be FILE_SIZE_%0«globalType»%1 */
+%0			%1void decodeBinary_%0«globalType»%1 (const t_buffer* buffer, %0«globalType»%1* container)
+%0			%1{
+%0			%1	unsigned i;
+%0		;
+		cFile.%fincIndent ()%F;
+		
+		// Calculate the empty record buffer size
+		var Int emptyRecordSize = 0;
+		for (i=0; i<recordsMap.count (); i++) {
+			ref const Record rec -> recordsMap.getAt (i);
+			if (rec.count.value > 1 && rec.%flengthOctets%F.%fvalue%F > emptyRecordSize) {
+				emptyRecordSize = rec.%flengthOctets%F.value;
+			}
+		}
+
+		for (i=0; i<recordsMap.count (); i++) {
+			ref const Record rec -> recordsMap.getAt (i);
+			if (rec.count.value > 1) {
+				cFile << endl <<
+					%1container->%0«rec.recordId»%1_COUNT = 0;
+%0					%1
+%0					%1for (i=0; i<%0«rec.count»%1; i++) {
+%0					%1	if (%0;
+				
+				// DETECT EMPTY RECORDS
+				for (j=0; j<rec.%fdeletionMarkers%F.count (); j++) {
+					ref const DeletionMarker del -> rec.%fdeletionMarkers%F.get(j);
+					if (j > 0) {cFile << %1 && %0;}
+					cFile << %1(bitsToNumeric (buffer, (OFFSET_%0«rec.recordId»%1+i*LENGTH_%0«rec.recordId»%1) * 8 + %0«del.%foffsetBits%F»%1, %0«del.%flengthBits%F»%1) == %0«del.%fdeletionMarker%F»%1)%0;
+				}
+				
+				cFile << %1) {
+%0					%1		break;
+%0					%1	}
+%0					%1	decodeBinary_%0«rec.%frecordId%F»%1 (buffer, OFFSET_%0«rec.recordId»%1+i*LENGTH_%0«rec.recordId»%1, container->%0«rec.recordId»%1+i);
+%0					%1	container->%0«rec.recordId»%1_COUNT++;
+%0					%1}
+%0				;
+			}
+			else {
+				cFile << endl <<
+					%1decodeBinary_%0«rec.%frecordId%F»%1 (buffer, OFFSET_%0«rec.recordId»%1, &container->%0«rec.recordId»%1);
+%0				;
+			}
+		}
+		cFile.%fdecIndent ()%F;
+		cFile << endl <<
+			%1}
+%0			%1
+%0			%1/* Encode a binary file; its size must be FILE_SIZE_%0«globalType»%1 */
+%0			%1extern void encodeBinary_%0«globalType»%1 (t_buffer* buffer, const %0«globalType»%1* container)
+%0			%1{
+%0			%1	unsigned i;
+%0		;
+		cFile.%fincIndent ()%F;
+		for (i=0; i<recordsMap.count (); i++) {
+			ref const Record rec -> recordsMap.getAt (i);
+			if (rec.count.value > 1) {
+				cFile << 
+					%1for (i=0; i<%0«rec.count»%1; i++) {
+%0					%1	if (i < container->%0«rec.%frecordId%F»%1_COUNT) {
+%0					%1		encodeBinary_%0«rec.%frecordId%F»%1 (buffer, OFFSET_%0«rec.recordId»%1+i*LENGTH_%0«rec.recordId»%1, container->%0«rec.recordId»%1+i);
+%0					%1	}
+%0					%1	else {
+%0					%1		encodeBinaryEmpty_%0«rec.%frecordId%F»%1 (buffer, OFFSET_%0«rec.recordId»%1+i*LENGTH_%0«rec.recordId»%1);
+%0					%1	}
+%0					%1}
+%0				;
+			}
+			else {
+				cFile << 
+					%1encodeBinary_%0«rec.%frecordId%F»%1 (buffer, OFFSET_%0«rec.recordId»%1, &container->%0«rec.recordId»%1);
+%0				;
+			}
+		}
+		cFile.%fdecIndent ()%F;
+		cFile << endl <<
+			%1}
+%0		;		
+	}
+}
+	
+
+
+extend class Field {
+	in phase generate {
+		shared Void genStruct (out TextStream hFile) const {
+			fieldType.genStruct (hFile);
+		}
+		shared String getBinType () const {return fieldType.getBinType ();}
+		
+		shared String getEnumerationMapName () const {
+			if (%fenums%F.count () == 0) {return "NULL";}
+			return "ENUM_"+upscan(Record).%frecordId%F.text+"_"+fieldId.text;
+		}
+		
+		shared Void genEnumerationMap (out TextStream cFile) const;
+	}
+}
+
+extend class FieldType {
+	in phase generate {
+		shared Void genStruct (out TextStream hFile) const {
+			hFile << %1#error Method genStruct not implemented in %0«objinfo(this)» endl;
+		}
+		shared String getBinType () const {return "#error getBinType not implemented for "+objinfo(this)+"\n";}
+	}
+}
+
+extend class FieldTypeNumeric {
+	in phase generate {
+		shared Void genStruct (out TextStream hFile) const {
+			if (boundTableLink.valid ()) {
+				hFile << %1t_reference %0<< upscan(Field).fieldId;
+			}
+			else {
+				hFile << %1t_numeric %0<< upscan(Field).fieldId;
+			}
+			if (upscan(Field).repetitions.value > 1) {
+				hFile << %1[%0 << upscan(Field).repetitions.value << %1]%0;
+			}
+			hFile << %1;%0 << endl;
+		}
+		shared String getBinType () const {return "BL_integer";}
+	}
+}
+
+extend class FieldTypeUnicode {
+	in phase generate {
+		shared Void genStruct (out TextStream hFile) const {
+			hFile << %1t_unicode %0«upscan(Field).fieldId»%1 [%0«upscan(Field).%flengthBits%F.%fvalue%F/16+1»%1];%0 << endl;
+		}
+		shared String getBinType () const {return "BL_unicode";}
+	}
+}
+
+extend class FieldTypeAscii {
+	in phase generate {
+		shared Void genStruct (out TextStream hFile) const {
+			hFile << %1t_unicode %0«upscan(Field).fieldId»%1 [%0«upscan(Field).%flengthBits%F.%fvalue%F/8+1»%1];%0 << endl;
+		}
+		shared String getBinType () const {return "BL_unicode";}
+	}
+}
+
+impl Field::genEnumerationMap {
+	if (enums.count () == 0) {return;}
+	
+	cFile << endl <<
+		%1/* Enumeration values for record %0«upscan(Record).recordId»%1, field %0«fieldId»%1 */
+%0		%1static const FieldEnumerator %0«getEnumerationMapName ()»%1 [%0«enums.count ()»%1] = {
+%0	;
+	var Int i;
+	cFile.incIndent ();
+	for (i=0; i<enums.count (); i++) {
+		var String enumText = enums.get (i).enumText.text;
+		cFile << %1{0x%0«String::formatInt (enumText.getLowerCase ().calcCrc32 (), 16, 8)»%1, "%0«enumText»%1", %0«enums.get(i).enumValue»%1}%0;
+		if (i+1 < enums.count ()) {cFile << ",";}
+		cFile << endl;
+	}
+	cFile.decIndent ();
+	cFile << %1};%0 << endl;
+}

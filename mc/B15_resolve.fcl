@@ -1,0 +1,37 @@
+lifeset CORE;
+
+phase resolve = 15;
+phase resolveBis = 15.1;
+
+extend class FieldType {
+	in phase resolveBis {
+		shared Int isReference () const {return false;}
+	}
+}
+extend class FieldTypeNumeric {
+	in phase resolveBis {
+		shared Int isReference () const {return boundTableLink.valid ();}
+	}
+}
+
+extend class Record {
+	in phase resolve {
+		shared Int isReferenced;
+	}
+}
+
+extend class FieldTypeNumeric {
+	in phase resolve {
+		link of Record boundTableLink;
+		do {
+			if (boundTable.text.length () > 0) {
+				boundTableLink.set (lset.recordsMap.get (boundTable));
+				boundTableLink.isReferenced = true;
+				if (!boundTableLink.keyField.valid()) {
+					system().msg << "Error: " << boundTable << " refers record " << boundTableLink.recordId << " that has no field defined as 'key'" << endl;
+					signalError ();
+				}
+			}
+		}
+	}
+}

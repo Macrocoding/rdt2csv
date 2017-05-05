@@ -1,0 +1,139 @@
+lifeset CORE;
+
+// Base path to generate .h/.c file
+LocString outputName;
+
+// Global type (given to the global structure)
+LocString globalType;
+
+// Size in octets of the binary file
+LocInt binaryFileSize;
+
+class Record {
+	// Record identifier
+	LocString recordId;
+	
+	// Short name
+	LocString shortName;
+	
+	// Offset of the first record of the series in the entire file, in octets
+	LocInt offsetOctets;
+	
+	// Length of one record, in octets
+	LocInt lengthOctets;
+	
+	// Number of consecutive records in the series
+	LocInt count;
+	
+	// Default zero value
+	Int defaultZeroValue = 0xFF;
+	
+	// Fields
+	array of Field fields;
+	
+	// Fixed encodings
+	array of FixedEncoding fixedEncodings;
+	
+	// Deletion markers
+	array of DeletionMarker deletionMarkers;
+}
+
+class Field {
+	// Field identifier
+	LocString fieldId;
+	
+	// Offset in bits from the beginning of the record
+	LocInt offsetBits;
+	
+	// Length in bits
+	LocInt lengthBits;
+	
+	// Repetitions
+	LocInt repetitions;
+	
+	// Comment
+	LocDecoString commentText;
+	
+	// Format comment
+	LocDecoString formatComment;
+	
+	// Type of the element
+	variant of FieldType fieldType;
+	
+	// Optional C validation code
+	LocString validationCode;
+	
+	// Enumerations
+	array of Enumeration enums;
+	
+	// Returns the field name with repetition value
+	String getFieldName(Int rep) const;
+	
+	// True if this a key
+	Int isKey;
+}
+
+class FieldType {
+}
+
+class FieldTypeNumeric: FieldType {
+	LocString boundTable;
+}
+
+class FieldTypeBCDBase: FieldTypeNumeric {}
+class FieldTypeBCD: FieldTypeBCDBase {}
+class FieldTypeRevBCD: FieldTypeBCDBase {}
+class FieldTypeBCDT: FieldTypeBCDBase {}
+class FieldTypeBinary: FieldTypeNumeric {}
+
+class FieldTypeUnicode: FieldType {}
+class FieldTypeAscii: FieldTypeUnicode {}
+
+class Enumeration {
+	// Enumeration value
+	LocInt enumValue;
+	
+	// Enumeration text
+	LocString enumText;
+}
+
+class FixedEncoding {
+	// Offset in bits from the beginning of the record
+	LocInt offsetBits;
+	
+	// Length in bits
+	LocInt lengthBits;
+
+	// Encoding
+	LocInt fixedValue;
+
+}
+
+class DeletionMarker {
+	// Offset in bits from the beginning of the record
+	LocInt offsetBits;
+	
+	// Length in bits
+	LocInt lengthBits;
+
+	// Encoding
+	LocInt deletionMarker;
+
+}
+
+
+impl Field::getFieldName {
+	if (repetitions.value <= 1) {
+		return fieldId.text;
+	}
+	var String ret = fieldId.text;
+	var Int pad = 1;
+	if (repetitions.value >= 100) {
+		pad = 3;
+	}
+	elsif (repetitions.value >= 10) {
+		pad = 2;
+	}
+	ret += String::formatInt (rep+1, 10, pad);
+	return ret;
+}

@@ -1,0 +1,28 @@
+grammar GRAMMAR;
+
+father-first phase createCore = 10 creates CORE;
+
+extend class OutputFiles {
+	in phase createCore do {
+		if (lset.CORE.outputName.text.length () > 0) {
+			system ().msg << "Error, output " << outputName << " already set at " << lset.CORE.outputName << endl;
+			signalError ();
+		}
+		else {
+			lset.CORE.outputName.set (outputName);
+		}
+	}
+}
+
+extend class GlobalType {
+	in phase createCore do {
+		if (lset.CORE.globalType.text.length () > 0) {
+			system ().msg << "Error, globalType " << globalType << " already set at " << lset.CORE.globalType << endl;
+			signalError ();
+		}
+		else {
+			lset.CORE.globalType.set (globalType);
+			lset.CORE.binaryFileSize.set (binaryFileSize);
+		}
+	}
+}

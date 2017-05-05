@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ASCII" ?>
+<ruleprj>
+	<importedProjects>
+	</importedProjects>
+	<projectId>EB1FBCA7-50040CFB-C885167B</projectId>
+	<lifeCycle>MAIN</lifeCycle>
+	<mainFunction></mainFunction>
+	<sources>
+		<String>A00_grammar.fcg</String>
+		<String>A01_grammar.fcl</String>
+		<String>A10_createCore.fcl</String>
+		<String>B00_core.fcl</String>
+		<String>B10_register.fcl</String>
+		<String>B15_resolve.fcl</String>
+		<String>B20_generate.fcl</String>
+		<String>B21_generateStructs.fcl</String>
+		<String>B22_generateBinFuncs.fcl</String>
+		<String>B23_generateCSVFuncs.fcl</String>
+		<String>B30_generateFile.fcl</String>
+		<String>B40_generateCLI.fcl</String>
+		<String>B50_generateValidation.fcl</String>
+		<String>B60_generateResolve.fcl</String>
+		<String>B70_generateTables.fcl</String>
+		<String>B80_generateHtml.fcl</String>
+		<String>B81_generateHtmlFormat.fcl</String>
+		<String>bin2csv.fcf</String>
+	</sources>
+</ruleprj>

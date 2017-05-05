@@ -1,0 +1,236 @@
+lifeset CORE;
+
+extend class Record {
+	in phase generate {
+		shared Void genFuncH (out TextStream hFile) const {
+			%F
+%f			%FhFile << endl << 
+%f				%F%1/* Function that decodes a binary record into the structure */
+%f%0				%F%1extern void decodeBinary_%0«recordId»%1 (const t_buffer* buffer, unsigned offsetInOctets, T_%0«recordId»%1* record);
+%f%0				%F%1
+%f%0				%F%1/* Function that encodes a structure into a binary record */
+%f%0				%F%1extern void encodeBinary_%0«recordId»%1 (t_buffer* buffer, unsigned offsetInOctets, const T_%0«recordId»%1* record);
+%f%0				%F%1
+%f%0				%F%1/* Function that encodes a binary empty record */
+%f%0				%F%1extern void encodeBinaryEmpty_%0«recordId»%1 (t_buffer* buffer, unsigned offsetInOctets);
+%f%0			%F;%f
+		}
+
+		shared Void genFuncC (out TextStream cFile) const {
+			%Fvar Int i;
+%f			%FcFile << endl << 
+%f				%F%1/* Function that decodes a binary record into the structure */
+%f%0				%F%1void decodeBinary_%0«recordId»%1 (const t_buffer* buffer, unsigned offsetInOctets, T_%0«recordId»%1* record)
+%f%0				%F%1{
+%f%0				%F%1	unsigned ofs = offsetInOctets * 8;
+%f%0			%F;
+%f			%FcFile.incIndent ();
+%f			%Ffor (i=0; i<fields.count(); i++) {
+%f			%F	fields.get(i).genDecode (cFile);
+%f			%F}
+%f			%FcFile.decIndent ();
+%f			%F
+%f			%FcFile <<
+%f				%F%1}
+%f%0				%F%1
+%f%0				%F%1/* Function that encodes a structure into a binary record */
+%f%0				%F%1void encodeBinary_%0«recordId»%1 (t_buffer* buffer, unsigned offsetInOctets, const T_%0«recordId»%1* record)
+%f%0				%F%1{
+%f%0				%F%1	unsigned ofs = offsetInOctets * 8;
+%f%0				%F%1	
+%f%0				%F%1	memset (buffer+offsetInOctets, 0, LENGTH_%0«recordId»%1);
+%f%0				%F%1
+%f%0			%F;
+%f			%FcFile.incIndent ();
+%f			%Ffor (i=0; i<fixedEncodings.count(); i++) {
+%f			%F	fixedEncodings.get(i).genEncode (cFile);
+%f			%F}
+%f			%Ffor (i=0; i<fields.count(); i++) {
+%f			%F	fields.get(i).genEncode (cFile);
+%f			%F}
+%f			%FcFile.decIndent ();
+%f			%FcFile <<
+%f				%F%1}
+%f%0				%F%1/* Function that encodes an empty record into a binary record */
+%f%0				%F%1void encodeBinaryEmpty_%0«recordId»%1 (t_buffer* buffer, unsigned offsetInOctets)
+%f%0				%F%1{
+%f%0				%F%1	/* By default memory is set to 0x%0«String::formatInt(defaultZeroValue,16,2)»%1 */
+%f%0				%F%1	memset (buffer+offsetInOctets, 0x%0«String::formatInt(defaultZeroValue,16,2)»%1, LENGTH_%0«recordId»%1);
+%f%0				%F%1
+%f%0			%F;
+%f			%FcFile.incIndent ();
+%f			%Ffor (i=0; i<fields.count(); i++) {
+%f			%F	fields.get(i).genEmptyEncode (cFile);
+%f			%F}
+%f			%FcFile.decIndent ();
+%f			%FcFile <<
+%f				%F%1}
+%f%0			%F;%f
+		}
+	}
+}%F
+
+extend class Field {
+%f	in phase generate {
+		shared Void genEncode (out TextStream cFile) const {
+			fieldType.genEncode (cFile);
+		}
+		shared Void genEmptyEncode (out TextStream cFile) const {
+			fieldType.genEmptyEncode (cFile);
+		}
+		shared Void genDecode (out TextStream cFile) const {
+			fieldType.genDecode (cFile);
+		}
+	}
+%F}
+
+extend class FieldType {
+%f	in phase generate {
+		shared Void genEncode (out TextStream cFile) const {
+			%FcFile << %1#error Method genEncode not implemented in %0«objinfo(this)» endl;%f
+		}
+		shared Void genEmptyEncode (out TextStream cFile) const {}
+		shared Void genDecode (out TextStream cFile) const {
+			%FcFile << %1#error Method genDecode not implemented in %0«objinfo(this)» endl;%f
+		}
+	}
+%F}
+
+extend class %fFieldTypeBCD%F {
+%f	in phase generate {
+		shared Void genEncode (out TextStream cFile) const {
+			%FcFile << %1numericToBCD (buffer, ofs + %0«upscan(Field).%foffsetBits%F»%1, record->%0«upscan(Field).fieldId»%1, %0«upscan(Field).%flengthBits%F»%1);%f%0 << endl;
+		}
+		shared Void genDecode (out TextStream cFile) const {
+			%FcFile << %1record->%0«upscan(Field).fieldId»%1 = BCDToNumeric (buffer, ofs + %0«upscan(Field).%foffsetBits%F»%1, %0«upscan(Field).%flengthBits%F»%1);%f%0 << endl;
+		}
+	}
+%F}
+
+extend class %fFieldTypeRevBCD%F {
+%f	in phase generate {
+		shared Void genEncode (out TextStream cFile) const {
+			%FcFile << %1numericToRevBCD (buffer, ofs + %0«upscan(Field).%foffsetBits%F»%1, record->%0«upscan(Field).fieldId»%1, %0«upscan(Field).%flengthBits%F»%1);%f%0 << endl;
+		}
+		shared Void genDecode (out TextStream cFile) const {
+			%FcFile << %1record->%0«upscan(Field).fieldId»%1 = RevBCDToNumeric (buffer, ofs + %0«upscan(Field).%foffsetBits%F»%1, %0«upscan(Field).%flengthBits%F»%1);%f%0 << endl;
+		}
+	}
+%F}
+
+extend class %fFieldTypeBCD%FT {
+%f	in phase generate {
+		shared Void genEncode (out TextStream cFile) const {
+			%FcFile << %1numericToBCDForTones (buffer, ofs + %0«upscan(Field).%foffsetBits%F»%1, record->%0«upscan(Field).fieldId»%1);%f%0 << endl;
+		}
+		shared Void genDecode (out TextStream cFile) const {
+			%FcFile << %1record->%0«upscan(Field).fieldId»%1 = BCDToNumericForTones (buffer, ofs + %0«upscan(Field).%foffsetBits%F»%1);%f%0 << endl;
+		}
+	}
+%F}
+
+extend class %fFieldTypeBinary%F {
+%f	in phase generate {
+		shared Void genEncode (out TextStream cFile) const {
+			var String cmd;
+			var Int len = %Fupscan(Field).%flengthBits.value;
+			var Int reps = upscan(Field).repetitions.value;
+
+			if (len > 8) {cmd = "numericToBinary";} else {cmd = "numericToBits";}
+			var String subField;
+			if (boundTableLink.valid ()) {
+				subField = ".refLineNo";
+			}
+			if (reps > 1) {
+				cFile << endl <<
+					%F%1{
+%f%0					%F%1	unsigned kk;
+%f%0					%F%1	for (kk=0; kk<%0«reps»%1; kk++) {
+%f%0					%F%1		%0«cmd»%1 (buffer, ofs + %0«upscan(Field).%foffsetBits%F»%1 + %0«len»%1*kk, record->%0«upscan(Field).fieldId»%1[kk]%0«subField»%1, %0«len»%1);
+%f%0					%F%1	}
+%f%0					%F%1}
+%f%0				%F<< endl;%f
+			}
+			else {
+				%FcFile << cmd << %1 (buffer, ofs + %0«upscan(Field).%foffsetBits%F»%1, record->%0«upscan(Field).fieldId<<subField»%1, %0«len»%1);%f%0 << endl;
+			}
+		}
+		shared Void genDecode (out TextStream cFile) const {
+			var String cmd;
+			var Int len = %Fupscan(Field).%flengthBits.value;
+			var Int reps = upscan(Field).repetitions.value;
+
+			if (len > 8) {cmd = "binaryToNumeric";} else {cmd = "bitsToNumeric";}
+			var String subField;
+			var String arr;
+			var String extLen;
+			if (boundTableLink.valid ()) {
+				subField = ".refLineNo";
+			}
+			if (reps > 1) {
+				arr = "[zz]";
+				extLen = %F "+" + str(len) + "*zz%f";
+				cFile << endl <<
+					%F%1{
+%f%0					%F%1	unsigned zz;
+%f%0					%F%1	for (zz=0; zz<%0«reps»%1; zz++) {
+%f%0				;
+				cFile.incIndent ();
+				cFile.incIndent ();
+			}
+			%FcFile << %1record->%0«upscan(Field).fieldId << arr << subField»%1 = %0«cmd»%1 (buffer, ofs + %0«upscan(Field).%foffsetBits%F << extLen»%1, %0«len»%1);%f%0 << endl;
+			if (boundTableLink.valid ()) {
+				subField = ".refLineNo";
+			}
+
+			if (reps > 1) {
+				cFile.decIndent ();
+				cFile.decIndent ();
+				cFile <<
+					%F%1	}
+%f%0					%F%1}
+%f%0				%F<< endl;%f
+			}
+		}
+	}
+%F}
+
+extend class %fFieldTypeUnicode%F {
+%f	in phase generate {
+		shared Void genEncode (out TextStream cFile) const {
+			%FcFile << %1unicodeToBinary (buffer, ofs + %0«upscan(Field).%foffsetBits%F»%1, record->%0«upscan(Field).fieldId»%1, %0«upscan(Field).%flengthBits%F»%1);%f%0 << endl;
+		}
+		shared Void genEmptyEncode (out TextStream cFile) const {
+			%FcFile <<
+%f			%F	%1/* Unicode empty record are encoded as 0 */
+%f%0				%F%1memset (buffer + offsetInOctets + %0«upscan(Field).%foffsetBits%F.value/8»%1, 0, %0«upscan(Field).%flengthBits%F.value/8»%1);%f%0 << endl;
+		}
+		shared Void genDecode (out TextStream cFile) const {
+			%FcFile << %1binaryToUnicode (buffer, ofs + %0«upscan(Field).%foffsetBits%F»%1, record->%0«upscan(Field).fieldId»%1, %0«upscan(Field).%flengthBits%F»%1);%f%0 << endl;
+		}
+	}
+%F}
+
+extend class %fFieldTypeAscii%F {
+%f	in phase generate {
+		shared Void genEncode (out TextStream cFile) const {
+			%FcFile << %1unicodeToAsciiBinary (buffer, ofs + %0«upscan(Field).%foffsetBits%F»%1, record->%0«upscan(Field).fieldId»%1, %0«upscan(Field).%flengthBits%F»%1);%f%0 << endl;
+		}
+		shared Void genEmptyEncode (out TextStream cFile) const {
+			%FcFile <<
+%f			%F	%1/* Unicode empty record are encoded as 0 */
+%f%0				%F%1memset (buffer + offsetInOctets + %0«upscan(Field).%foffsetBits%F.value/8»%1, 0, %0«upscan(Field).%flengthBits%F.value/8»%1);%f%0 << endl;
+		}
+		shared Void genDecode (out TextStream cFile) const {
+			%FcFile << %1asciiBinaryToUnicode (buffer, ofs + %0«upscan(Field).%foffsetBits%F»%1, record->%0«upscan(Field).fieldId»%1, %0«upscan(Field).%flengthBits%F»%1);%f%0 << endl;
+		}
+	}
+%F}
+
+extend class %fFixedEncoding%F {
+%f	in phase generate {
+		shared Void genEncode (out TextStream cFile) const {
+			%FcFile << %1numericToBits (buffer, ofs + %0«%foffsetBits%F»%1, %0«fixedValue»%1, %0«%flengthBits%F»%1);%f%0 << endl;
+		}
+	}
+%F}

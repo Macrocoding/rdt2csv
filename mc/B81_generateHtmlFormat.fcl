@@ -1,0 +1,163 @@
+lifeset CORE;
+
+phase generateHtmlFormat = 81;
+
+in phase generateHtmlFormat do {
+	var FilePath fileName;
+	fileName.parse ("../html/rdt2csv_format.html");
+	
+	// Open the files
+	var FileOutStream file (fileName);
+	system().msg << "Generating " << fileName << endl;
+
+	var Int i;
+	for (i=0; i<recordsMap.count(); i++) {
+		recordsMap.getAt(i).genHtmlFmt(file);
+	}
+}
+
+extend class FieldType        {in phase generateHtmlFormat {shared String typeName() const {return "unknown";}}}
+extend class FieldTypeBCD     {in phase generateHtmlFormat {shared String typeName() const {return "BCD";}}}
+extend class FieldTypeRevBCD  {in phase generateHtmlFormat {shared String typeName() const {return "RevBCD";}}}
+extend class FieldTypeBCDT    {in phase generateHtmlFormat {shared String typeName() const {return "BCDT";}}}
+extend class FieldTypeBinary  {in phase generateHtmlFormat {shared String typeName() const {return "Binary";}}}
+extend class FieldTypeUnicode {in phase generateHtmlFormat {shared String typeName() const {return "Unicode";}}}
+extend class FieldTypeAscii   {in phase generateHtmlFormat {shared String typeName() const {return "Ascii";}}}
+
+
+extend class Record {
+	in phase generateHtmlFormat {
+		shared Void genHtmlFmt (out TextStream file) const;
+	}
+}
+
+extend class Field {
+	in phase generateHtmlFormat {
+		shared Void genHtmlFmt (out TextStream file) const;
+	}
+}
+
+extend class FieldType {
+	in phase generateHtmlFormat {
+		shared Int genHtmlFmt (out TextStream file) const {return 0;}
+	}
+}
+
+extend class FieldTypeNumeric {
+	in phase generateHtmlFormat {
+		shared Int genHtmlFmt (out TextStream file) const;
+	}
+}
+
+extend class FieldTypeUnicode {
+	in phase generateHtmlFormat {
+		shared Int genHtmlFmt (out TextStream file) const;
+	}
+}
+
+extend class FieldTypeAscii {
+	in phase generateHtmlFormat {
+		shared Int genHtmlFmt (out TextStream file) const;
+	}
+}
+
+impl Record::genHtmlFmt {
+	var Int i;
+	file <<
+		%F%1<h2>Table: <samp>%0«recordId»%1</samp></h2>
+%f%0		%F%1<table>
+%f%0		%F%1	<tr><td>Maximum number of lines</td><td>%0«count»%1</td></tr>
+%f%0		%F%1	<tr><td>First record offset (octets)</td><td>0x%0«String::formatInt(offsetOctets.value, 16, 0)»%1 (%0«offsetOctets»%1)</td></tr>
+%f%0		%F%1	<tr><td>Record length (octets)</td><td>0x%0«String::formatInt(lengthOctets.value, 16, 0)»%1 (%0«lengthOctets»%1)</td></tr>
+%f%0		%F%1	<tr><td>Number or records</td><td>0x%0«String::formatInt(count.value, 16, 0)»%1</td></tr>
+%f%0		%F%1	<tr><td>All records range</td><td>0x%0«String::formatInt(offsetOctets.value, 16, 0)»%1 - 0x%0«String::formatInt(offsetOctets.value+lengthOctets.value*count.value, 16, 0)»%1</td></tr>
+%f%0		%F%1	<tr><td>Default zero value</td><td>0x%0«String::formatInt(defaultZeroValue, 16, 2)»%1</td></tr>
+%f%0		%F%1</table>
+%f%0	;
+	
+	if (deletionMarkers.count()) {
+		file <<
+			%F%1<h3>Deletion markers:</h3>
+%f%0			%F%1<table>
+%f%0		%F;
+%f		%Ffile.incIndent();%f
+		file << %F%1<tr class="tableHeader"><td class="tableHeader">Offset bits</td><td class="tableHeader">Len.bits</td><td class="tableHeader">Value</td></tr>%0 << endl;%f
+		for (i=0; i<deletionMarkers.count(); i++) {
+			file << %F%1<tr><td>%0«%fdeletionMarkers.get(i).offsetBits»%1</td><td>%0«deletionMarkers.get(i).lengthBits»%1</td><td>%F0x%f%0«String::formatInt(deletionMarkers.get(i).deletionMarker.value,16,2)»%1 (%0«deletionMarkers.get(i).deletionMarker»%1)</td></tr>%0 << endl;
+		}
+		%Ffile.decIndent();%f
+		file <<
+			%F%1</table>
+%f%0		%F;
+%f	%F}
+%f	
+	file <<
+		%F%1<h3>Fields format:</h3>
+%f%0		%F%1<table>
+%f%0	%F;
+%f	%Ffile.incIndent();%f
+	
+
+	file << %F%1<tr class="tableHeader"><td class="tableHeader">Name</td><td class="tableHeader">Type</td><td class="tableHeader">Offset<br>bits</td><td class="tableHeader">Len<br>bits</td><td class="tableHeader">Notes</td></tr>%0 << endl;%f
+	for (i=0; i<fields.count(); i++) {
+		fields.get(i).genHtmlFmt(file);
+	}
+	
+	%Ffile.decIndent();%f
+	file <<
+		%F%1</table>
+%f%0	%F;
+%f	
+}
+
+impl Field::genHtmlFmt {
+	var Int reps = 1;
+	var Int i;
+	if (repetitions.value > 1) {reps = repetitions.value;}
+	
+	for (i=0; i<reps; i++) {
+		/* CELL 1 - FIELD NAME */
+		file << %F%1<tr><td style="vertical-align: top;"><samp>%0«getFieldName(i)»%1</samp></td>%0;
+%f
+		/* CELL 2, 3, 4 - INFO */
+		file << %F%1<td><a href="#%0«fieldType.typeName()»%1">%0«fieldType.typeName()»%1</a></td><td>%0«offsetBits.value + i*%flengthBits%F.value»%1</td><td>%0«lengthBits»%1</td>%0;%f
+
+		/* CELL 5 - COMMENT NAME */
+		file << %F%1<td>%f%0;
+		if (formatComment%F.%ftext%F.%flength ()%F) {%f
+			%Ffile << formatComment.%ftext%F.%fgetString ()%F.escapeHTML();%f
+		}
+		else {
+			%Fif (commentText.%ftext%F.%flength ()%F) {
+%f			%F	file << commentText.%ftext%F.%fgetString ()%F.escapeHTML() << %1<br>%0;
+%f			%F}
+%f			fieldType%F.genHtmlFmt (file);
+%f			%Fif (enums.count() > 0) {
+%f				%Fvar Int i;
+%f				%Ffor (i=0; i<enums.count(); i++) {
+%f				%F	file << %1 <samp>%0«enums.get(i).enumValue»%1=%0«enums.get(i).enumText.text.escapeHTML()»%1</samp>%0;
+%f					%Fif (i+1 < enums.count()) {file << %1,%0;}
+%f				%F}
+%f			%F}
+%f		}
+		%Ffile << %1</td></tr>%0 << endl;%f
+	}
+}
+
+impl FieldTypeUnicode::genHtmlFmt {
+	file << %F%1Maximum length: %0«upscan(Field).%flengthBits%F.value/16»%1 characters.<br>%0;%f
+	return true;
+}
+
+impl FieldTypeAscii::genHtmlFmt {
+	file << %F%1Maximum length: %0«upscan(Field).%flengthBits%F.value/8»%1 characters.<br>%0;%f
+	return true;
+}
+
+impl FieldTypeNumeric::genHtmlFmt {
+	if (boundTableLink.valid()) {
+		file << %F%1Set to a valid position in table <samp>%f%0«boundTableLink.recordId»%F%1</samp>.<br>%0;%f
+		return true;
+	}
+	return false;
+}

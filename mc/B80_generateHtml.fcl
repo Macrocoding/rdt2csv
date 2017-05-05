@@ -1,0 +1,118 @@
+lifeset CORE;
+
+phase generateHtml = 80;
+
+in phase generateHtml do {
+	var FilePath fileName;
+	fileName.parse ("../html/rdt2csv_table.html");
+	
+	// Open the files
+	var FileOutStream file (fileName);
+	system().msg << "Generating " << fileName << endl;
+
+	var Int i;
+	for (i=0; i<recordsMap.count(); i++) {
+		recordsMap.getAt(i).genHtml(file);
+	}
+}
+
+extend class Record {
+	in phase generateHtml {
+		shared Void genHtml (out TextStream file) const;
+	}
+}
+
+extend class Field {
+	in phase generateHtml {
+		shared Void genHtml (out TextStream file) const;
+	}
+}
+
+extend class FieldType {
+	in phase generateHtml {
+		shared Int genHtml (out TextStream file) const {return false;}
+	}
+}
+
+extend class FieldTypeNumeric {
+	in phase generateHtml {
+		shared Int genHtml (out TextStream file) const;
+	}
+}
+
+extend class FieldTypeUnicode {
+	in phase generateHtml {
+		shared Int genHtml (out TextStream file) const;
+	}
+}
+
+extend class FieldTypeAscii {
+	in phase generateHtml {
+		shared Int genHtml (out TextStream file) const;
+	}
+}
+
+impl Record::genHtml {
+	file <<
+		%F%1<h2>Table: <samp>%0«recordId»%1</samp></h2>
+%f%0		%F%1<p>Maximum number of lines: %0«count»%1</p>
+%f%0		%F%1<table>
+%f%0	%F;
+%f	%Ffile.incIndent();%f
+	
+	var Int i;
+	for (i=0; i<fields.count(); i++) {
+		fields.get(i).genHtml(file);
+	}
+	
+	%Ffile.decIndent();%f
+	file <<
+		%F%1</table>
+%f%0	%F;
+%f	
+}
+
+impl Field::genHtml {
+	var Int reps = 1;
+	var Int i;
+	if (repetitions.value > 1) {reps = repetitions.value;}
+	
+	for (i=0; i<reps; i++) {
+		/* CELL 1 - FIELD NAME */
+		file << %F%1<tr><td style="vertical-align: top;"><samp>%0«getFieldName(i)»%1</samp></td><td>%0;
+%f
+		/* CELL 2 - COMMENT NAME */
+		var Int otherValues = fieldType.genHtml(file);
+		%Fif (commentText.%ftext%F.%flength ()%F) {
+%f		%F	file << commentText.%ftext%F.%fgetString ()%F.escapeHTML() << %1<br>%0;
+%f		%F}
+%f		%Fif (enums.count() > 0) {
+%f		%F	if (otherValues) {file << %1Other valid values:%0;}
+%f		%F	else {file << %1Valid values:%0;}
+%f			%Fvar Int i;
+%f			%Ffor (i=0; i<enums.count(); i++) {
+%f			%F	file << %1 <samp>%0«enums.get(i).enumText.text.escapeHTML()»%1</samp>%0;
+%f				%Fif (i+1 < enums.count()) {file << %1,%0;}
+%f			%F}
+%f		%F}
+%f		%Ffile << %1</td></tr>%0 << endl;%f
+	}
+}
+
+impl FieldTypeNumeric::genHtml {
+	if (boundTableLink.valid()) {
+		file << %F%1Set to empty or to a valid name in table <samp>%f%0«boundTableLink.recordId»%F%1</samp>.<br>%0;%f
+		return true;
+	}
+	return false;
+}
+
+impl FieldTypeUnicode::genHtml {
+	file << %F%1Maximum length: %0«upscan(Field).%flengthBits%F.value/16»%1 characters.<br>%0;%f
+	return true;
+}
+
+impl FieldTypeAscii::genHtml {
+	file << %F%1Maximum length: %0«upscan(Field).%flengthBits%F.value/8»%1 characters.<br>%0;%f
+	return true;
+}

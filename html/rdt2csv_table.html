@@ -1,0 +1,186 @@
+<h2>Table: <samp>ChannelInformation</samp></h2>
+<p>Maximum number of lines: 1000</p>
+<table>
+	<tr><td style="vertical-align: top;"><samp>LoneWorker</samp></td><td>Valid values: <samp>off</samp>, <samp>on</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>Squelch</samp></td><td>Valid values: <samp>tight</samp>, <samp>normal</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>Autoscan</samp></td><td>Valid values: <samp>off</samp>, <samp>on</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>Bandwidth</samp></td><td>Valid values: <samp>12.5</samp>, <samp>25.0</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMode</samp></td><td>Valid values: <samp>digital</samp>, <samp>analog</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>Colorcode</samp></td><td>0&lt;=N&lt;=15<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>RepeaterSlot</samp></td><td>Valid values: <samp>slot1</samp>, <samp>slot2</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>RxOnly</samp></td><td>Valid values: <samp>off</samp>, <samp>on</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>AllowTalkaround</samp></td><td>Valid values: <samp>off</samp>, <samp>on</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>DataCallConf</samp></td><td>Valid values: <samp>off</samp>, <samp>on</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>PrivateCallConf</samp></td><td>Valid values: <samp>off</samp>, <samp>on</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>Privacy</samp></td><td>Valid values: <samp>none</samp>, <samp>basic</samp>, <samp>enhanced</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>PrivacyNo</samp></td><td>0&lt;=N&lt;=7 if privacy is enhanced; 0&lt;=N&lt;=15 if basic<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>DisplayPttId</samp></td><td>Valid values: <samp>on</samp>, <samp>off</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>CompressedUdpHdr</samp></td><td>Valid values: <samp>off</samp>, <samp>on</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>EmergencyAlarmAck</samp></td><td>Valid values: <samp>off</samp>, <samp>on</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>RxRefFrequency</samp></td><td>Valid values: <samp>low</samp>, <samp>medium</samp>, <samp>high</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>AdmintCriteria</samp></td><td>Valid values: <samp>always</samp>, <samp>chFree</samp>, <samp>CTCSS/DCS</samp>, <samp>colorCode</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>Power</samp></td><td>Valid values: <samp>low</samp>, <samp>high</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>Vox</samp></td><td>Valid values: <samp>off</samp>, <samp>on</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>QtReverse</samp></td><td>Valid values: <samp>180</samp>, <samp>120</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ReverseBurst</samp></td><td>Valid values: <samp>off</samp>, <samp>on</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>TxRefFrequency</samp></td><td>Valid values: <samp>low</samp>, <samp>medium</samp>, <samp>high</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ContactName</samp></td><td>Set to empty or to a valid name in table <samp>DigitalContact</samp>.<br>Other valid values: <samp>none</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>Tot</samp></td><td>0=infinite; otherwise time in seconds, s=15*N<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>TotRekeyDelay</samp></td><td>number of seconds<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>EmergencySystem</samp></td><td></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ScanList</samp></td><td>Set to empty or to a valid name in table <samp>ScanList</samp>.<br>Other valid values: <samp>none</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>GroupList</samp></td><td>Set to empty or to a valid name in table <samp>DigitalRxGroupList</samp>.<br>Other valid values: <samp>none</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>Decode18</samp></td><td>Valid values: <samp>off</samp>, <samp>on</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>RxFrequency</samp></td><td>Frequency * 10 Hz (for example, 43098570 = 430.98570 MHz)<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>TxFrequency</samp></td><td>Frequency * 10 Hz (for example, 43098570 = 430.98570 MHz)<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>CtcssDcsDecode</samp></td><td>Valid values: <samp>none</samp>, <samp>T67.0</samp>, <samp>T69.3</samp>, <samp>T71.9</samp>, <samp>T74.4</samp>, <samp>T77.0</samp>, <samp>T79.7</samp>, <samp>T82.5</samp>, <samp>T85.4</samp>, <samp>T88.5</samp>, <samp>T91.5</samp>, <samp>T94.8</samp>, <samp>T97.4</samp>, <samp>T100.0</samp>, <samp>T103.5</samp>, <samp>T107.2</samp>, <samp>T110.9</samp>, <samp>T114.8</samp>, <samp>T118.8</samp>, <samp>T123.0</samp>, <samp>T127.3</samp>, <samp>T131.8</samp>, <samp>T136.5</samp>, <samp>T141.3</samp>, <samp>T146.2</samp>, <samp>T151.4</samp>, <samp>T156.7</samp>, <samp>T159.8</samp>, <samp>T162.2</samp>, <samp>T165.5</samp>, <samp>T167.9</samp>, <samp>T171.3</samp>, <samp>T173.8</samp>, <samp>T177.3</samp>, <samp>T179.9</samp>, <samp>T183.5</samp>, <samp>T186.2</samp>, <samp>T189.9</samp>, <samp>T192.8</samp>, <samp>T196.6</samp>, <samp>T199.5</samp>, <samp>T203.5</samp>, <samp>T206.5</samp>, <samp>T210.7</samp>, <samp>T218.1</samp>, <samp>T225.7</samp>, <samp>T229.1</samp>, <samp>T233.6</samp>, <samp>T241.8</samp>, <samp>T250.3</samp>, <samp>T254.1</samp>, <samp>D023N</samp>, <samp>D025N</samp>, <samp>D026N</samp>, <samp>D031N</samp>, <samp>D032N</samp>, <samp>D036N</samp>, <samp>D043N</samp>, <samp>D047N</samp>, <samp>D051N</samp>, <samp>D053N</samp>, <samp>D054N</samp>, <samp>D065N</samp>, <samp>D071N</samp>, <samp>D072N</samp>, <samp>D073N</samp>, <samp>D074N</samp>, <samp>D114N</samp>, <samp>D115N</samp>, <samp>D116N</samp>, <samp>D122N</samp>, <samp>D125N</samp>, <samp>D131N</samp>, <samp>D132N</samp>, <samp>D134N</samp>, <samp>D143N</samp>, <samp>D145N</samp>, <samp>D152N</samp>, <samp>D155N</samp>, <samp>D156N</samp>, <samp>D162N</samp>, <samp>D165N</samp>, <samp>D172N</samp>, <samp>D174N</samp>, <samp>D205N</samp>, <samp>D212N</samp>, <samp>D223N</samp>, <samp>D225N</samp>, <samp>D226N</samp>, <samp>D243N</samp>, <samp>D244N</samp>, <samp>D245N</samp>, <samp>D246N</samp>, <samp>D251N</samp>, <samp>D252N</samp>, <samp>D255N</samp>, <samp>D261N</samp>, <samp>D263N</samp>, <samp>D265N</samp>, <samp>D266N</samp>, <samp>D271N</samp>, <samp>D274N</samp>, <samp>D306N</samp>, <samp>D311N</samp>, <samp>D315N</samp>, <samp>D325N</samp>, <samp>D331N</samp>, <samp>D332N</samp>, <samp>D343N</samp>, <samp>D346N</samp>, <samp>D351N</samp>, <samp>D356N</samp>, <samp>D364N</samp>, <samp>D365N</samp>, <samp>D371N</samp>, <samp>D411N</samp>, <samp>D412N</samp>, <samp>D413N</samp>, <samp>D423N</samp>, <samp>D431N</samp>, <samp>D432N</samp>, <samp>D445N</samp>, <samp>D446N</samp>, <samp>D452N</samp>, <samp>D454N</samp>, <samp>D455N</samp>, <samp>D462N</samp>, <samp>D464N</samp>, <samp>D465N</samp>, <samp>D466N</samp>, <samp>D503N</samp>, <samp>D506N</samp>, <samp>D516N</samp>, <samp>D523N</samp>, <samp>D526N</samp>, <samp>D532N</samp>, <samp>D546N</samp>, <samp>D565N</samp>, <samp>D606N</samp>, <samp>D612N</samp>, <samp>D624N</samp>, <samp>D627N</samp>, <samp>D631N</samp>, <samp>D632N</samp>, <samp>D654N</samp>, <samp>D662N</samp>, <samp>D664N</samp>, <samp>D703N</samp>, <samp>D712N</samp>, <samp>D723N</samp>, <samp>D731N</samp>, <samp>D732N</samp>, <samp>D734N</samp>, <samp>D743N</samp>, <samp>D754N</samp>, <samp>D023I</samp>, <samp>D025I</samp>, <samp>D026I</samp>, <samp>D031I</samp>, <samp>D032I</samp>, <samp>D036I</samp>, <samp>D043I</samp>, <samp>D047I</samp>, <samp>D051I</samp>, <samp>D053I</samp>, <samp>D054I</samp>, <samp>D065I</samp>, <samp>D071I</samp>, <samp>D072I</samp>, <samp>D073I</samp>, <samp>D074I</samp>, <samp>D114I</samp>, <samp>D115I</samp>, <samp>D116I</samp>, <samp>D122I</samp>, <samp>D125I</samp>, <samp>D131I</samp>, <samp>D132I</samp>, <samp>D134I</samp>, <samp>D143I</samp>, <samp>D145I</samp>, <samp>D152I</samp>, <samp>D155I</samp>, <samp>D156I</samp>, <samp>D162I</samp>, <samp>D165I</samp>, <samp>D172I</samp>, <samp>D174I</samp>, <samp>D205I</samp>, <samp>D212I</samp>, <samp>D223I</samp>, <samp>D225I</samp>, <samp>D226I</samp>, <samp>D243I</samp>, <samp>D244I</samp>, <samp>D245I</samp>, <samp>D246I</samp>, <samp>D251I</samp>, <samp>D252I</samp>, <samp>D255I</samp>, <samp>D261I</samp>, <samp>D263I</samp>, <samp>D265I</samp>, <samp>D266I</samp>, <samp>D271I</samp>, <samp>D274I</samp>, <samp>D306I</samp>, <samp>D311I</samp>, <samp>D315I</samp>, <samp>D325I</samp>, <samp>D331I</samp>, <samp>D332I</samp>, <samp>D343I</samp>, <samp>D346I</samp>, <samp>D351I</samp>, <samp>D356I</samp>, <samp>D364I</samp>, <samp>D365I</samp>, <samp>D371I</samp>, <samp>D411I</samp>, <samp>D412I</samp>, <samp>D413I</samp>, <samp>D423I</samp>, <samp>D431I</samp>, <samp>D432I</samp>, <samp>D445I</samp>, <samp>D446I</samp>, <samp>D452I</samp>, <samp>D454I</samp>, <samp>D455I</samp>, <samp>D462I</samp>, <samp>D464I</samp>, <samp>D465I</samp>, <samp>D466I</samp>, <samp>D503I</samp>, <samp>D506I</samp>, <samp>D516I</samp>, <samp>D523I</samp>, <samp>D526I</samp>, <samp>D532I</samp>, <samp>D546I</samp>, <samp>D565I</samp>, <samp>D606I</samp>, <samp>D612I</samp>, <samp>D624I</samp>, <samp>D627I</samp>, <samp>D631I</samp>, <samp>D632I</samp>, <samp>D654I</samp>, <samp>D662I</samp>, <samp>D664I</samp>, <samp>D703I</samp>, <samp>D712I</samp>, <samp>D723I</samp>, <samp>D731I</samp>, <samp>D732I</samp>, <samp>D734I</samp>, <samp>D743I</samp>, <samp>D754I</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>CtcssDcsEncode</samp></td><td>Valid values: <samp>none</samp>, <samp>T67.0</samp>, <samp>T69.3</samp>, <samp>T71.9</samp>, <samp>T74.4</samp>, <samp>T77.0</samp>, <samp>T79.7</samp>, <samp>T82.5</samp>, <samp>T85.4</samp>, <samp>T88.5</samp>, <samp>T91.5</samp>, <samp>T94.8</samp>, <samp>T97.4</samp>, <samp>T100.0</samp>, <samp>T103.5</samp>, <samp>T107.2</samp>, <samp>T110.9</samp>, <samp>T114.8</samp>, <samp>T118.8</samp>, <samp>T123.0</samp>, <samp>T127.3</samp>, <samp>T131.8</samp>, <samp>T136.5</samp>, <samp>T141.3</samp>, <samp>T146.2</samp>, <samp>T151.4</samp>, <samp>T156.7</samp>, <samp>T159.8</samp>, <samp>T162.2</samp>, <samp>T165.5</samp>, <samp>T167.9</samp>, <samp>T171.3</samp>, <samp>T173.8</samp>, <samp>T177.3</samp>, <samp>T179.9</samp>, <samp>T183.5</samp>, <samp>T186.2</samp>, <samp>T189.9</samp>, <samp>T192.8</samp>, <samp>T196.6</samp>, <samp>T199.5</samp>, <samp>T203.5</samp>, <samp>T206.5</samp>, <samp>T210.7</samp>, <samp>T218.1</samp>, <samp>T225.7</samp>, <samp>T229.1</samp>, <samp>T233.6</samp>, <samp>T241.8</samp>, <samp>T250.3</samp>, <samp>T254.1</samp>, <samp>D023N</samp>, <samp>D025N</samp>, <samp>D026N</samp>, <samp>D031N</samp>, <samp>D032N</samp>, <samp>D036N</samp>, <samp>D043N</samp>, <samp>D047N</samp>, <samp>D051N</samp>, <samp>D053N</samp>, <samp>D054N</samp>, <samp>D065N</samp>, <samp>D071N</samp>, <samp>D072N</samp>, <samp>D073N</samp>, <samp>D074N</samp>, <samp>D114N</samp>, <samp>D115N</samp>, <samp>D116N</samp>, <samp>D122N</samp>, <samp>D125N</samp>, <samp>D131N</samp>, <samp>D132N</samp>, <samp>D134N</samp>, <samp>D143N</samp>, <samp>D145N</samp>, <samp>D152N</samp>, <samp>D155N</samp>, <samp>D156N</samp>, <samp>D162N</samp>, <samp>D165N</samp>, <samp>D172N</samp>, <samp>D174N</samp>, <samp>D205N</samp>, <samp>D212N</samp>, <samp>D223N</samp>, <samp>D225N</samp>, <samp>D226N</samp>, <samp>D243N</samp>, <samp>D244N</samp>, <samp>D245N</samp>, <samp>D246N</samp>, <samp>D251N</samp>, <samp>D252N</samp>, <samp>D255N</samp>, <samp>D261N</samp>, <samp>D263N</samp>, <samp>D265N</samp>, <samp>D266N</samp>, <samp>D271N</samp>, <samp>D274N</samp>, <samp>D306N</samp>, <samp>D311N</samp>, <samp>D315N</samp>, <samp>D325N</samp>, <samp>D331N</samp>, <samp>D332N</samp>, <samp>D343N</samp>, <samp>D346N</samp>, <samp>D351N</samp>, <samp>D356N</samp>, <samp>D364N</samp>, <samp>D365N</samp>, <samp>D371N</samp>, <samp>D411N</samp>, <samp>D412N</samp>, <samp>D413N</samp>, <samp>D423N</samp>, <samp>D431N</samp>, <samp>D432N</samp>, <samp>D445N</samp>, <samp>D446N</samp>, <samp>D452N</samp>, <samp>D454N</samp>, <samp>D455N</samp>, <samp>D462N</samp>, <samp>D464N</samp>, <samp>D465N</samp>, <samp>D466N</samp>, <samp>D503N</samp>, <samp>D506N</samp>, <samp>D516N</samp>, <samp>D523N</samp>, <samp>D526N</samp>, <samp>D532N</samp>, <samp>D546N</samp>, <samp>D565N</samp>, <samp>D606N</samp>, <samp>D612N</samp>, <samp>D624N</samp>, <samp>D627N</samp>, <samp>D631N</samp>, <samp>D632N</samp>, <samp>D654N</samp>, <samp>D662N</samp>, <samp>D664N</samp>, <samp>D703N</samp>, <samp>D712N</samp>, <samp>D723N</samp>, <samp>D731N</samp>, <samp>D732N</samp>, <samp>D734N</samp>, <samp>D743N</samp>, <samp>D754N</samp>, <samp>D023I</samp>, <samp>D025I</samp>, <samp>D026I</samp>, <samp>D031I</samp>, <samp>D032I</samp>, <samp>D036I</samp>, <samp>D043I</samp>, <samp>D047I</samp>, <samp>D051I</samp>, <samp>D053I</samp>, <samp>D054I</samp>, <samp>D065I</samp>, <samp>D071I</samp>, <samp>D072I</samp>, <samp>D073I</samp>, <samp>D074I</samp>, <samp>D114I</samp>, <samp>D115I</samp>, <samp>D116I</samp>, <samp>D122I</samp>, <samp>D125I</samp>, <samp>D131I</samp>, <samp>D132I</samp>, <samp>D134I</samp>, <samp>D143I</samp>, <samp>D145I</samp>, <samp>D152I</samp>, <samp>D155I</samp>, <samp>D156I</samp>, <samp>D162I</samp>, <samp>D165I</samp>, <samp>D172I</samp>, <samp>D174I</samp>, <samp>D205I</samp>, <samp>D212I</samp>, <samp>D223I</samp>, <samp>D225I</samp>, <samp>D226I</samp>, <samp>D243I</samp>, <samp>D244I</samp>, <samp>D245I</samp>, <samp>D246I</samp>, <samp>D251I</samp>, <samp>D252I</samp>, <samp>D255I</samp>, <samp>D261I</samp>, <samp>D263I</samp>, <samp>D265I</samp>, <samp>D266I</samp>, <samp>D271I</samp>, <samp>D274I</samp>, <samp>D306I</samp>, <samp>D311I</samp>, <samp>D315I</samp>, <samp>D325I</samp>, <samp>D331I</samp>, <samp>D332I</samp>, <samp>D343I</samp>, <samp>D346I</samp>, <samp>D351I</samp>, <samp>D356I</samp>, <samp>D364I</samp>, <samp>D365I</samp>, <samp>D371I</samp>, <samp>D411I</samp>, <samp>D412I</samp>, <samp>D413I</samp>, <samp>D423I</samp>, <samp>D431I</samp>, <samp>D432I</samp>, <samp>D445I</samp>, <samp>D446I</samp>, <samp>D452I</samp>, <samp>D454I</samp>, <samp>D455I</samp>, <samp>D462I</samp>, <samp>D464I</samp>, <samp>D465I</samp>, <samp>D466I</samp>, <samp>D503I</samp>, <samp>D506I</samp>, <samp>D516I</samp>, <samp>D523I</samp>, <samp>D526I</samp>, <samp>D532I</samp>, <samp>D546I</samp>, <samp>D565I</samp>, <samp>D606I</samp>, <samp>D612I</samp>, <samp>D624I</samp>, <samp>D627I</samp>, <samp>D631I</samp>, <samp>D632I</samp>, <samp>D654I</samp>, <samp>D662I</samp>, <samp>D664I</samp>, <samp>D703I</samp>, <samp>D712I</samp>, <samp>D723I</samp>, <samp>D731I</samp>, <samp>D732I</samp>, <samp>D734I</samp>, <samp>D743I</samp>, <samp>D754I</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>TxSignalingSyst</samp></td><td></td></tr>
+	<tr><td style="vertical-align: top;"><samp>RxSignalingSyst</samp></td><td></td></tr>
+	<tr><td style="vertical-align: top;"><samp>Name</samp></td><td>Maximum length: 16 characters.<br></td></tr>
+</table>
+<h2>Table: <samp>DigitalContact</samp></h2>
+<p>Maximum number of lines: 1000</p>
+<table>
+	<tr><td style="vertical-align: top;"><samp>CallId</samp></td><td></td></tr>
+	<tr><td style="vertical-align: top;"><samp>CallReceiveTone</samp></td><td>Valid values: <samp>off</samp>, <samp>on</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>CallType</samp></td><td>Valid values: <samp>group</samp>, <samp>private</samp>, <samp>all</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>Name</samp></td><td>Maximum length: 16 characters.<br></td></tr>
+</table>
+<h2>Table: <samp>DigitalRxGroupList</samp></h2>
+<p>Maximum number of lines: 250</p>
+<table>
+	<tr><td style="vertical-align: top;"><samp>Name</samp></td><td>Maximum length: 16 characters.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ContactMember01</samp></td><td>Set to empty or to a valid name in table <samp>DigitalContact</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ContactMember02</samp></td><td>Set to empty or to a valid name in table <samp>DigitalContact</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ContactMember03</samp></td><td>Set to empty or to a valid name in table <samp>DigitalContact</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ContactMember04</samp></td><td>Set to empty or to a valid name in table <samp>DigitalContact</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ContactMember05</samp></td><td>Set to empty or to a valid name in table <samp>DigitalContact</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ContactMember06</samp></td><td>Set to empty or to a valid name in table <samp>DigitalContact</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ContactMember07</samp></td><td>Set to empty or to a valid name in table <samp>DigitalContact</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ContactMember08</samp></td><td>Set to empty or to a valid name in table <samp>DigitalContact</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ContactMember09</samp></td><td>Set to empty or to a valid name in table <samp>DigitalContact</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ContactMember10</samp></td><td>Set to empty or to a valid name in table <samp>DigitalContact</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ContactMember11</samp></td><td>Set to empty or to a valid name in table <samp>DigitalContact</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ContactMember12</samp></td><td>Set to empty or to a valid name in table <samp>DigitalContact</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ContactMember13</samp></td><td>Set to empty or to a valid name in table <samp>DigitalContact</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ContactMember14</samp></td><td>Set to empty or to a valid name in table <samp>DigitalContact</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ContactMember15</samp></td><td>Set to empty or to a valid name in table <samp>DigitalContact</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ContactMember16</samp></td><td>Set to empty or to a valid name in table <samp>DigitalContact</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ContactMember17</samp></td><td>Set to empty or to a valid name in table <samp>DigitalContact</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ContactMember18</samp></td><td>Set to empty or to a valid name in table <samp>DigitalContact</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ContactMember19</samp></td><td>Set to empty or to a valid name in table <samp>DigitalContact</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ContactMember20</samp></td><td>Set to empty or to a valid name in table <samp>DigitalContact</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ContactMember21</samp></td><td>Set to empty or to a valid name in table <samp>DigitalContact</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ContactMember22</samp></td><td>Set to empty or to a valid name in table <samp>DigitalContact</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ContactMember23</samp></td><td>Set to empty or to a valid name in table <samp>DigitalContact</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ContactMember24</samp></td><td>Set to empty or to a valid name in table <samp>DigitalContact</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ContactMember25</samp></td><td>Set to empty or to a valid name in table <samp>DigitalContact</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ContactMember26</samp></td><td>Set to empty or to a valid name in table <samp>DigitalContact</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ContactMember27</samp></td><td>Set to empty or to a valid name in table <samp>DigitalContact</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ContactMember28</samp></td><td>Set to empty or to a valid name in table <samp>DigitalContact</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ContactMember29</samp></td><td>Set to empty or to a valid name in table <samp>DigitalContact</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ContactMember30</samp></td><td>Set to empty or to a valid name in table <samp>DigitalContact</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ContactMember31</samp></td><td>Set to empty or to a valid name in table <samp>DigitalContact</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ContactMember32</samp></td><td>Set to empty or to a valid name in table <samp>DigitalContact</samp>.<br></td></tr>
+</table>
+<h2>Table: <samp>GeneralSettings</samp></h2>
+<p>Maximum number of lines: 1</p>
+<table>
+	<tr><td style="vertical-align: top;"><samp>InfoScreenLine1</samp></td><td>Maximum length: 10 characters.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>InfoScreenLine2</samp></td><td>Maximum length: 10 characters.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>MonitorType</samp></td><td>Valid values: <samp>silent</samp>, <samp>open</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>DisableAllLeds</samp></td><td>Valid values: <samp>off</samp>, <samp>on</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>TalkPermitTone</samp></td><td>Valid values: <samp>none</samp>, <samp>digital</samp>, <samp>analog</samp>, <samp>both</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>PasswordAndLockEnable</samp></td><td>Valid values: <samp>off</samp>, <samp>on</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>CHFreeIndicationTone</samp></td><td>Valid values: <samp>off</samp>, <samp>on</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>DisableAllTone</samp></td><td>Valid values: <samp>off</samp>, <samp>on</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>SaveModeReceive</samp></td><td>Valid values: <samp>off</samp>, <samp>on</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>SavePreamble</samp></td><td>Valid values: <samp>off</samp>, <samp>on</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>IntroScreen</samp></td><td>Valid values: <samp>charstring</samp>, <samp>picture</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>RadioId</samp></td><td>max value is 16776415<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>TxPreamble</samp></td><td>ms=N*60, where N&lt;=0&lt;=144<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>GroupCallHangTime</samp></td><td>time in ms, ms=N*100, N&lt;=70, N must be multiple of 5<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>PrivateCallHangTime</samp></td><td>time in ms, ms=N*100, N&lt;=70, N must be multiple of 5<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>VoxSensitivity</samp></td><td></td></tr>
+	<tr><td style="vertical-align: top;"><samp>RxLowBatteryInterval</samp></td><td>time in seconds, s=N*5, N&lt;=127<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>CallAlertTone</samp></td><td>0=Continue, otherwise time in seconds, s=N*5, N&lt;=240<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>LoneWorkerRespTime</samp></td><td></td></tr>
+	<tr><td style="vertical-align: top;"><samp>LoneWorkerReminderTime</samp></td><td></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ScanDigitalHangTime</samp></td><td>time in ms, ms=N*5, 5&lt;=N&lt;=100; default N=10<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ScanAnalogHangTime</samp></td><td>time in ms, ms=N*5, 5&lt;=N&lt;=100; default N=10<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>Unknown1</samp></td><td>meaning still unknown, do not edit<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>KeypadLockTime</samp></td><td>Valid values: <samp>5s</samp>, <samp>10s</samp>, <samp>15s</samp>, <samp>manual</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>Mode</samp></td><td>Valid values: <samp>mr</samp>, <samp>ch</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>PowerOnPassword</samp></td><td>8 digits<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>RadioProgPassowrd</samp></td><td>8 digits<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>PcProgPassword</samp></td><td>Maximum length: 8 characters.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>RadioName</samp></td><td>Maximum length: 16 characters.<br></td></tr>
+</table>
+<h2>Table: <samp>ScanList</samp></h2>
+<p>Maximum number of lines: 250</p>
+<table>
+	<tr><td style="vertical-align: top;"><samp>Name</samp></td><td>Maximum length: 16 characters.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>PriorityCh1</samp></td><td>Set to empty or to a valid name in table <samp>ChannelInformation</samp>.<br>Other valid values: <samp>none</samp>, <samp>selected</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>PriorityCh2</samp></td><td>Set to empty or to a valid name in table <samp>ChannelInformation</samp>.<br>Other valid values: <samp>none</samp>, <samp>selected</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>TXDesignatedCh</samp></td><td>Set to empty or to a valid name in table <samp>ChannelInformation</samp>.<br>Other valid values: <samp>none</samp>, <samp>last</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>SignHoldTime</samp></td><td>Time in ms, N * 25 = ms    minMs=50 (n=2) maxMs=6375 (n=255)<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>PrioSamplTime</samp></td><td>Time in ms, N * 250 = ms   minMs=750 (n=3) maxMs=6375 (n=255) maxMs=7750 (n=31)<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember01</samp></td><td>Set to empty or to a valid name in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember02</samp></td><td>Set to empty or to a valid name in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember03</samp></td><td>Set to empty or to a valid name in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember04</samp></td><td>Set to empty or to a valid name in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember05</samp></td><td>Set to empty or to a valid name in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember06</samp></td><td>Set to empty or to a valid name in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember07</samp></td><td>Set to empty or to a valid name in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember08</samp></td><td>Set to empty or to a valid name in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember09</samp></td><td>Set to empty or to a valid name in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember10</samp></td><td>Set to empty or to a valid name in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember11</samp></td><td>Set to empty or to a valid name in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember12</samp></td><td>Set to empty or to a valid name in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember13</samp></td><td>Set to empty or to a valid name in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember14</samp></td><td>Set to empty or to a valid name in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember15</samp></td><td>Set to empty or to a valid name in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember16</samp></td><td>Set to empty or to a valid name in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember17</samp></td><td>Set to empty or to a valid name in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember18</samp></td><td>Set to empty or to a valid name in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember19</samp></td><td>Set to empty or to a valid name in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember20</samp></td><td>Set to empty or to a valid name in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember21</samp></td><td>Set to empty or to a valid name in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember22</samp></td><td>Set to empty or to a valid name in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember23</samp></td><td>Set to empty or to a valid name in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember24</samp></td><td>Set to empty or to a valid name in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember25</samp></td><td>Set to empty or to a valid name in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember26</samp></td><td>Set to empty or to a valid name in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember27</samp></td><td>Set to empty or to a valid name in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember28</samp></td><td>Set to empty or to a valid name in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember29</samp></td><td>Set to empty or to a valid name in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember30</samp></td><td>Set to empty or to a valid name in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember31</samp></td><td>Set to empty or to a valid name in table <samp>ChannelInformation</samp>.<br></td></tr>
+</table>
+<h2>Table: <samp>TextMessage</samp></h2>
+<p>Maximum number of lines: 50</p>
+<table>
+	<tr><td style="vertical-align: top;"><samp>Text</samp></td><td>Maximum length: 144 characters.<br></td></tr>
+</table>
+<h2>Table: <samp>ZoneInformation</samp></h2>
+<p>Maximum number of lines: 250</p>
+<table>
+	<tr><td style="vertical-align: top;"><samp>Name</samp></td><td>Maximum length: 16 characters.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember01</samp></td><td>Set to empty or to a valid name in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember02</samp></td><td>Set to empty or to a valid name in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember03</samp></td><td>Set to empty or to a valid name in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember04</samp></td><td>Set to empty or to a valid name in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember05</samp></td><td>Set to empty or to a valid name in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember06</samp></td><td>Set to empty or to a valid name in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember07</samp></td><td>Set to empty or to a valid name in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember08</samp></td><td>Set to empty or to a valid name in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember09</samp></td><td>Set to empty or to a valid name in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember10</samp></td><td>Set to empty or to a valid name in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember11</samp></td><td>Set to empty or to a valid name in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember12</samp></td><td>Set to empty or to a valid name in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember13</samp></td><td>Set to empty or to a valid name in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember14</samp></td><td>Set to empty or to a valid name in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember15</samp></td><td>Set to empty or to a valid name in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember16</samp></td><td>Set to empty or to a valid name in table <samp>ChannelInformation</samp>.<br></td></tr>
+</table>

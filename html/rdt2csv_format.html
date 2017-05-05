@@ -1,0 +1,281 @@
+<h2>Table: <samp>ChannelInformation</samp></h2>
+<table>
+	<tr><td>Maximum number of lines</td><td>1000</td></tr>
+	<tr><td>First record offset (octets)</td><td>0x1F025 (127013)</td></tr>
+	<tr><td>Record length (octets)</td><td>0x40 (64)</td></tr>
+	<tr><td>Number or records</td><td>0x3E8</td></tr>
+	<tr><td>All records range</td><td>0x1F025 - 0x2EA25</td></tr>
+	<tr><td>Default zero value</td><td>0xFF</td></tr>
+</table>
+<h3>Deletion markers:</h3>
+<table>
+	<tr class="tableHeader"><td class="tableHeader">Offset bits</td><td class="tableHeader">Len.bits</td><td class="tableHeader">Value</td></tr>
+	<tr><td>128</td><td>8</td><td>0xFF (255)</td></tr>
+</table>
+<h3>Fields format:</h3>
+<table>
+	<tr class="tableHeader"><td class="tableHeader">Name</td><td class="tableHeader">Type</td><td class="tableHeader">Offset<br>bits</td><td class="tableHeader">Len<br>bits</td><td class="tableHeader">Notes</td></tr>
+	<tr><td style="vertical-align: top;"><samp>LoneWorker</samp></td><td><a href="#Binary">Binary</a></td><td>0</td><td>1</td><td> <samp>0=off</samp>, <samp>1=on</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>Squelch</samp></td><td><a href="#Binary">Binary</a></td><td>2</td><td>1</td><td> <samp>0=tight</samp>, <samp>1=normal</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>Autoscan</samp></td><td><a href="#Binary">Binary</a></td><td>3</td><td>1</td><td> <samp>0=off</samp>, <samp>1=on</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>Bandwidth</samp></td><td><a href="#Binary">Binary</a></td><td>4</td><td>1</td><td> <samp>0=12.5</samp>, <samp>1=25.0</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMode</samp></td><td><a href="#Binary">Binary</a></td><td>6</td><td>2</td><td> <samp>2=digital</samp>, <samp>1=analog</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>Colorcode</samp></td><td><a href="#Binary">Binary</a></td><td>8</td><td>4</td><td>0&lt;=N&lt;=15<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>RepeaterSlot</samp></td><td><a href="#Binary">Binary</a></td><td>12</td><td>2</td><td> <samp>1=slot1</samp>, <samp>2=slot2</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>RxOnly</samp></td><td><a href="#Binary">Binary</a></td><td>14</td><td>1</td><td> <samp>0=off</samp>, <samp>1=on</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>AllowTalkaround</samp></td><td><a href="#Binary">Binary</a></td><td>15</td><td>1</td><td> <samp>0=off</samp>, <samp>1=on</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>DataCallConf</samp></td><td><a href="#Binary">Binary</a></td><td>16</td><td>1</td><td> <samp>0=off</samp>, <samp>1=on</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>PrivateCallConf</samp></td><td><a href="#Binary">Binary</a></td><td>17</td><td>1</td><td> <samp>0=off</samp>, <samp>1=on</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>Privacy</samp></td><td><a href="#Binary">Binary</a></td><td>18</td><td>2</td><td> <samp>0=none</samp>, <samp>1=basic</samp>, <samp>2=enhanced</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>PrivacyNo</samp></td><td><a href="#Binary">Binary</a></td><td>20</td><td>4</td><td>0&lt;=N&lt;=7 if privacy is enhanced; 0&lt;=N&lt;=15 if basic<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>DisplayPttId</samp></td><td><a href="#Binary">Binary</a></td><td>24</td><td>1</td><td> <samp>0=on</samp>, <samp>1=off</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>CompressedUdpHdr</samp></td><td><a href="#Binary">Binary</a></td><td>25</td><td>1</td><td> <samp>0=off</samp>, <samp>1=on</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>EmergencyAlarmAck</samp></td><td><a href="#Binary">Binary</a></td><td>28</td><td>1</td><td> <samp>0=off</samp>, <samp>1=on</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>RxRefFrequency</samp></td><td><a href="#Binary">Binary</a></td><td>30</td><td>2</td><td> <samp>0=low</samp>, <samp>1=medium</samp>, <samp>2=high</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>AdmintCriteria</samp></td><td><a href="#Binary">Binary</a></td><td>32</td><td>2</td><td> <samp>0=always</samp>, <samp>1=chFree</samp>, <samp>2=CTCSS/DCS</samp>, <samp>3=colorCode</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>Power</samp></td><td><a href="#Binary">Binary</a></td><td>34</td><td>1</td><td> <samp>0=low</samp>, <samp>1=high</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>Vox</samp></td><td><a href="#Binary">Binary</a></td><td>35</td><td>1</td><td> <samp>0=off</samp>, <samp>1=on</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>QtReverse</samp></td><td><a href="#Binary">Binary</a></td><td>36</td><td>1</td><td> <samp>0=180</samp>, <samp>1=120</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ReverseBurst</samp></td><td><a href="#Binary">Binary</a></td><td>37</td><td>1</td><td> <samp>0=off</samp>, <samp>1=on</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>TxRefFrequency</samp></td><td><a href="#Binary">Binary</a></td><td>38</td><td>2</td><td> <samp>0=low</samp>, <samp>1=medium</samp>, <samp>2=high</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ContactName</samp></td><td><a href="#Binary">Binary</a></td><td>48</td><td>16</td><td>Set to a valid position in table <samp>DigitalContact</samp>.<br> <samp>0=none</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>Tot</samp></td><td><a href="#Binary">Binary</a></td><td>66</td><td>6</td><td>0=infinite; otherwise time in seconds, s=15*N<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>TotRekeyDelay</samp></td><td><a href="#Binary">Binary</a></td><td>72</td><td>8</td><td>number of seconds<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>EmergencySystem</samp></td><td><a href="#Binary">Binary</a></td><td>82</td><td>6</td><td></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ScanList</samp></td><td><a href="#Binary">Binary</a></td><td>88</td><td>8</td><td>Set to a valid position in table <samp>ScanList</samp>.<br> <samp>0=none</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>GroupList</samp></td><td><a href="#Binary">Binary</a></td><td>96</td><td>8</td><td>Set to a valid position in table <samp>DigitalRxGroupList</samp>.<br> <samp>0=none</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>Decode18</samp></td><td><a href="#Binary">Binary</a></td><td>112</td><td>8</td><td> <samp>0=off</samp>, <samp>1=on</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>RxFrequency</samp></td><td><a href="#BCD">BCD</a></td><td>128</td><td>32</td><td>Frequency * 10 Hz (for example, 43098570 = 430.98570 MHz)<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>TxFrequency</samp></td><td><a href="#BCD">BCD</a></td><td>160</td><td>32</td><td>Frequency * 10 Hz (for example, 43098570 = 430.98570 MHz)<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>CtcssDcsDecode</samp></td><td><a href="#BCDT">BCDT</a></td><td>192</td><td>16</td><td>CTCSS/DCS tones - See description of BCDT</td></tr>
+	<tr><td style="vertical-align: top;"><samp>CtcssDcsEncode</samp></td><td><a href="#BCDT">BCDT</a></td><td>208</td><td>16</td><td>CTCSS/DCS tones - See description of BCDT</td></tr>
+	<tr><td style="vertical-align: top;"><samp>TxSignalingSyst</samp></td><td><a href="#Binary">Binary</a></td><td>237</td><td>3</td><td></td></tr>
+	<tr><td style="vertical-align: top;"><samp>RxSignalingSyst</samp></td><td><a href="#Binary">Binary</a></td><td>229</td><td>3</td><td></td></tr>
+	<tr><td style="vertical-align: top;"><samp>Name</samp></td><td><a href="#Unicode">Unicode</a></td><td>256</td><td>256</td><td>Maximum length: 16 characters.<br></td></tr>
+</table>
+<h2>Table: <samp>DigitalContact</samp></h2>
+<table>
+	<tr><td>Maximum number of lines</td><td>1000</td></tr>
+	<tr><td>First record offset (octets)</td><td>0x61A5 (24997)</td></tr>
+	<tr><td>Record length (octets)</td><td>0x24 (36)</td></tr>
+	<tr><td>Number or records</td><td>0x3E8</td></tr>
+	<tr><td>All records range</td><td>0x61A5 - 0xEE45</td></tr>
+	<tr><td>Default zero value</td><td>0xFF</td></tr>
+</table>
+<h3>Deletion markers:</h3>
+<table>
+	<tr class="tableHeader"><td class="tableHeader">Offset bits</td><td class="tableHeader">Len.bits</td><td class="tableHeader">Value</td></tr>
+	<tr><td>0</td><td>8</td><td>0xFF (255)</td></tr>
+	<tr><td>8</td><td>8</td><td>0xFF (255)</td></tr>
+	<tr><td>16</td><td>8</td><td>0xFF (255)</td></tr>
+</table>
+<h3>Fields format:</h3>
+<table>
+	<tr class="tableHeader"><td class="tableHeader">Name</td><td class="tableHeader">Type</td><td class="tableHeader">Offset<br>bits</td><td class="tableHeader">Len<br>bits</td><td class="tableHeader">Notes</td></tr>
+	<tr><td style="vertical-align: top;"><samp>CallId</samp></td><td><a href="#Binary">Binary</a></td><td>0</td><td>24</td><td></td></tr>
+	<tr><td style="vertical-align: top;"><samp>CallReceiveTone</samp></td><td><a href="#Binary">Binary</a></td><td>26</td><td>1</td><td> <samp>0=off</samp>, <samp>1=on</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>CallType</samp></td><td><a href="#Binary">Binary</a></td><td>30</td><td>2</td><td> <samp>1=group</samp>, <samp>2=private</samp>, <samp>3=all</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>Name</samp></td><td><a href="#Unicode">Unicode</a></td><td>32</td><td>256</td><td>Maximum length: 16 characters.<br></td></tr>
+</table>
+<h2>Table: <samp>DigitalRxGroupList</samp></h2>
+<table>
+	<tr><td>Maximum number of lines</td><td>250</td></tr>
+	<tr><td>First record offset (octets)</td><td>0xEE45 (60997)</td></tr>
+	<tr><td>Record length (octets)</td><td>0x60 (96)</td></tr>
+	<tr><td>Number or records</td><td>0xFA</td></tr>
+	<tr><td>All records range</td><td>0xEE45 - 0x14C05</td></tr>
+	<tr><td>Default zero value</td><td>0x00</td></tr>
+</table>
+<h3>Deletion markers:</h3>
+<table>
+	<tr class="tableHeader"><td class="tableHeader">Offset bits</td><td class="tableHeader">Len.bits</td><td class="tableHeader">Value</td></tr>
+	<tr><td>0</td><td>8</td><td>0x00 (0)</td></tr>
+</table>
+<h3>Fields format:</h3>
+<table>
+	<tr class="tableHeader"><td class="tableHeader">Name</td><td class="tableHeader">Type</td><td class="tableHeader">Offset<br>bits</td><td class="tableHeader">Len<br>bits</td><td class="tableHeader">Notes</td></tr>
+	<tr><td style="vertical-align: top;"><samp>Name</samp></td><td><a href="#Unicode">Unicode</a></td><td>0</td><td>256</td><td>Maximum length: 16 characters.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ContactMember01</samp></td><td><a href="#Binary">Binary</a></td><td>256</td><td>16</td><td>Set to a valid position in table <samp>DigitalContact</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ContactMember02</samp></td><td><a href="#Binary">Binary</a></td><td>272</td><td>16</td><td>Set to a valid position in table <samp>DigitalContact</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ContactMember03</samp></td><td><a href="#Binary">Binary</a></td><td>288</td><td>16</td><td>Set to a valid position in table <samp>DigitalContact</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ContactMember04</samp></td><td><a href="#Binary">Binary</a></td><td>304</td><td>16</td><td>Set to a valid position in table <samp>DigitalContact</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ContactMember05</samp></td><td><a href="#Binary">Binary</a></td><td>320</td><td>16</td><td>Set to a valid position in table <samp>DigitalContact</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ContactMember06</samp></td><td><a href="#Binary">Binary</a></td><td>336</td><td>16</td><td>Set to a valid position in table <samp>DigitalContact</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ContactMember07</samp></td><td><a href="#Binary">Binary</a></td><td>352</td><td>16</td><td>Set to a valid position in table <samp>DigitalContact</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ContactMember08</samp></td><td><a href="#Binary">Binary</a></td><td>368</td><td>16</td><td>Set to a valid position in table <samp>DigitalContact</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ContactMember09</samp></td><td><a href="#Binary">Binary</a></td><td>384</td><td>16</td><td>Set to a valid position in table <samp>DigitalContact</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ContactMember10</samp></td><td><a href="#Binary">Binary</a></td><td>400</td><td>16</td><td>Set to a valid position in table <samp>DigitalContact</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ContactMember11</samp></td><td><a href="#Binary">Binary</a></td><td>416</td><td>16</td><td>Set to a valid position in table <samp>DigitalContact</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ContactMember12</samp></td><td><a href="#Binary">Binary</a></td><td>432</td><td>16</td><td>Set to a valid position in table <samp>DigitalContact</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ContactMember13</samp></td><td><a href="#Binary">Binary</a></td><td>448</td><td>16</td><td>Set to a valid position in table <samp>DigitalContact</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ContactMember14</samp></td><td><a href="#Binary">Binary</a></td><td>464</td><td>16</td><td>Set to a valid position in table <samp>DigitalContact</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ContactMember15</samp></td><td><a href="#Binary">Binary</a></td><td>480</td><td>16</td><td>Set to a valid position in table <samp>DigitalContact</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ContactMember16</samp></td><td><a href="#Binary">Binary</a></td><td>496</td><td>16</td><td>Set to a valid position in table <samp>DigitalContact</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ContactMember17</samp></td><td><a href="#Binary">Binary</a></td><td>512</td><td>16</td><td>Set to a valid position in table <samp>DigitalContact</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ContactMember18</samp></td><td><a href="#Binary">Binary</a></td><td>528</td><td>16</td><td>Set to a valid position in table <samp>DigitalContact</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ContactMember19</samp></td><td><a href="#Binary">Binary</a></td><td>544</td><td>16</td><td>Set to a valid position in table <samp>DigitalContact</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ContactMember20</samp></td><td><a href="#Binary">Binary</a></td><td>560</td><td>16</td><td>Set to a valid position in table <samp>DigitalContact</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ContactMember21</samp></td><td><a href="#Binary">Binary</a></td><td>576</td><td>16</td><td>Set to a valid position in table <samp>DigitalContact</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ContactMember22</samp></td><td><a href="#Binary">Binary</a></td><td>592</td><td>16</td><td>Set to a valid position in table <samp>DigitalContact</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ContactMember23</samp></td><td><a href="#Binary">Binary</a></td><td>608</td><td>16</td><td>Set to a valid position in table <samp>DigitalContact</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ContactMember24</samp></td><td><a href="#Binary">Binary</a></td><td>624</td><td>16</td><td>Set to a valid position in table <samp>DigitalContact</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ContactMember25</samp></td><td><a href="#Binary">Binary</a></td><td>640</td><td>16</td><td>Set to a valid position in table <samp>DigitalContact</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ContactMember26</samp></td><td><a href="#Binary">Binary</a></td><td>656</td><td>16</td><td>Set to a valid position in table <samp>DigitalContact</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ContactMember27</samp></td><td><a href="#Binary">Binary</a></td><td>672</td><td>16</td><td>Set to a valid position in table <samp>DigitalContact</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ContactMember28</samp></td><td><a href="#Binary">Binary</a></td><td>688</td><td>16</td><td>Set to a valid position in table <samp>DigitalContact</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ContactMember29</samp></td><td><a href="#Binary">Binary</a></td><td>704</td><td>16</td><td>Set to a valid position in table <samp>DigitalContact</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ContactMember30</samp></td><td><a href="#Binary">Binary</a></td><td>720</td><td>16</td><td>Set to a valid position in table <samp>DigitalContact</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ContactMember31</samp></td><td><a href="#Binary">Binary</a></td><td>736</td><td>16</td><td>Set to a valid position in table <samp>DigitalContact</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ContactMember32</samp></td><td><a href="#Binary">Binary</a></td><td>752</td><td>16</td><td>Set to a valid position in table <samp>DigitalContact</samp>.<br></td></tr>
+</table>
+<h2>Table: <samp>GeneralSettings</samp></h2>
+<table>
+	<tr><td>Maximum number of lines</td><td>1</td></tr>
+	<tr><td>First record offset (octets)</td><td>0x2265 (8805)</td></tr>
+	<tr><td>Record length (octets)</td><td>0x90 (144)</td></tr>
+	<tr><td>Number or records</td><td>0x1</td></tr>
+	<tr><td>All records range</td><td>0x2265 - 0x22F5</td></tr>
+	<tr><td>Default zero value</td><td>0xFF</td></tr>
+</table>
+<h3>Fields format:</h3>
+<table>
+	<tr class="tableHeader"><td class="tableHeader">Name</td><td class="tableHeader">Type</td><td class="tableHeader">Offset<br>bits</td><td class="tableHeader">Len<br>bits</td><td class="tableHeader">Notes</td></tr>
+	<tr><td style="vertical-align: top;"><samp>InfoScreenLine1</samp></td><td><a href="#Unicode">Unicode</a></td><td>0</td><td>160</td><td>Maximum length: 10 characters.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>InfoScreenLine2</samp></td><td><a href="#Unicode">Unicode</a></td><td>160</td><td>160</td><td>Maximum length: 10 characters.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>MonitorType</samp></td><td><a href="#Binary">Binary</a></td><td>515</td><td>1</td><td> <samp>0=silent</samp>, <samp>1=open</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>DisableAllLeds</samp></td><td><a href="#Binary">Binary</a></td><td>517</td><td>1</td><td> <samp>0=off</samp>, <samp>1=on</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>TalkPermitTone</samp></td><td><a href="#Binary">Binary</a></td><td>520</td><td>2</td><td> <samp>0=none</samp>, <samp>1=digital</samp>, <samp>2=analog</samp>, <samp>3=both</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>PasswordAndLockEnable</samp></td><td><a href="#Binary">Binary</a></td><td>522</td><td>1</td><td> <samp>1=off</samp>, <samp>0=on</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>CHFreeIndicationTone</samp></td><td><a href="#Binary">Binary</a></td><td>523</td><td>1</td><td> <samp>1=off</samp>, <samp>0=on</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>DisableAllTone</samp></td><td><a href="#Binary">Binary</a></td><td>525</td><td>1</td><td> <samp>1=off</samp>, <samp>0=on</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>SaveModeReceive</samp></td><td><a href="#Binary">Binary</a></td><td>526</td><td>1</td><td> <samp>0=off</samp>, <samp>1=on</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>SavePreamble</samp></td><td><a href="#Binary">Binary</a></td><td>527</td><td>1</td><td> <samp>0=off</samp>, <samp>1=on</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>IntroScreen</samp></td><td><a href="#Binary">Binary</a></td><td>531</td><td>1</td><td> <samp>0=charstring</samp>, <samp>1=picture</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>RadioId</samp></td><td><a href="#Binary">Binary</a></td><td>544</td><td>24</td><td>max value is 16776415<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>TxPreamble</samp></td><td><a href="#Binary">Binary</a></td><td>576</td><td>8</td><td>ms=N*60, where N&lt;=0&lt;=144<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>GroupCallHangTime</samp></td><td><a href="#Binary">Binary</a></td><td>584</td><td>8</td><td>time in ms, ms=N*100, N&lt;=70, N must be multiple of 5<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>PrivateCallHangTime</samp></td><td><a href="#Binary">Binary</a></td><td>592</td><td>8</td><td>time in ms, ms=N*100, N&lt;=70, N must be multiple of 5<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>VoxSensitivity</samp></td><td><a href="#Binary">Binary</a></td><td>600</td><td>8</td><td></td></tr>
+	<tr><td style="vertical-align: top;"><samp>RxLowBatteryInterval</samp></td><td><a href="#Binary">Binary</a></td><td>624</td><td>8</td><td>time in seconds, s=N*5, N&lt;=127<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>CallAlertTone</samp></td><td><a href="#Binary">Binary</a></td><td>632</td><td>8</td><td>0=Continue, otherwise time in seconds, s=N*5, N&lt;=240<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>LoneWorkerRespTime</samp></td><td><a href="#Binary">Binary</a></td><td>640</td><td>8</td><td></td></tr>
+	<tr><td style="vertical-align: top;"><samp>LoneWorkerReminderTime</samp></td><td><a href="#Binary">Binary</a></td><td>648</td><td>8</td><td></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ScanDigitalHangTime</samp></td><td><a href="#Binary">Binary</a></td><td>664</td><td>8</td><td>time in ms, ms=N*5, 5&lt;=N&lt;=100; default N=10<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ScanAnalogHangTime</samp></td><td><a href="#Binary">Binary</a></td><td>672</td><td>8</td><td>time in ms, ms=N*5, 5&lt;=N&lt;=100; default N=10<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>Unknown1</samp></td><td><a href="#Binary">Binary</a></td><td>680</td><td>8</td><td>meaning still unknown, do not edit<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>KeypadLockTime</samp></td><td><a href="#Binary">Binary</a></td><td>688</td><td>8</td><td> <samp>1=5s</samp>, <samp>2=10s</samp>, <samp>3=15s</samp>, <samp>255=manual</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>Mode</samp></td><td><a href="#Binary">Binary</a></td><td>696</td><td>8</td><td> <samp>0=mr</samp>, <samp>255=ch</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>PowerOnPassword</samp></td><td><a href="#RevBCD">RevBCD</a></td><td>704</td><td>32</td><td>8 digits<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>RadioProgPassowrd</samp></td><td><a href="#RevBCD">RevBCD</a></td><td>736</td><td>32</td><td>8 digits<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>PcProgPassword</samp></td><td><a href="#Ascii">Ascii</a></td><td>768</td><td>64</td><td>Converted to lower case; if not set, set to all 0xFF.</td></tr>
+	<tr><td style="vertical-align: top;"><samp>RadioName</samp></td><td><a href="#Unicode">Unicode</a></td><td>896</td><td>256</td><td>Maximum length: 16 characters.<br></td></tr>
+</table>
+<h2>Table: <samp>ScanList</samp></h2>
+<table>
+	<tr><td>Maximum number of lines</td><td>250</td></tr>
+	<tr><td>First record offset (octets)</td><td>0x18A85 (100997)</td></tr>
+	<tr><td>Record length (octets)</td><td>0x68 (104)</td></tr>
+	<tr><td>Number or records</td><td>0xFA</td></tr>
+	<tr><td>All records range</td><td>0x18A85 - 0x1F015</td></tr>
+	<tr><td>Default zero value</td><td>0x00</td></tr>
+</table>
+<h3>Deletion markers:</h3>
+<table>
+	<tr class="tableHeader"><td class="tableHeader">Offset bits</td><td class="tableHeader">Len.bits</td><td class="tableHeader">Value</td></tr>
+	<tr><td>0</td><td>8</td><td>0x00 (0)</td></tr>
+</table>
+<h3>Fields format:</h3>
+<table>
+	<tr class="tableHeader"><td class="tableHeader">Name</td><td class="tableHeader">Type</td><td class="tableHeader">Offset<br>bits</td><td class="tableHeader">Len<br>bits</td><td class="tableHeader">Notes</td></tr>
+	<tr><td style="vertical-align: top;"><samp>Name</samp></td><td><a href="#Unicode">Unicode</a></td><td>0</td><td>256</td><td>Maximum length: 16 characters.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>PriorityCh1</samp></td><td><a href="#Binary">Binary</a></td><td>256</td><td>16</td><td>Set to a valid position in table <samp>ChannelInformation</samp>.<br> <samp>65535=none</samp>, <samp>0=selected</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>PriorityCh2</samp></td><td><a href="#Binary">Binary</a></td><td>272</td><td>16</td><td>Set to a valid position in table <samp>ChannelInformation</samp>.<br> <samp>65535=none</samp>, <samp>0=selected</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>TXDesignatedCh</samp></td><td><a href="#Binary">Binary</a></td><td>288</td><td>16</td><td>Set to a valid position in table <samp>ChannelInformation</samp>.<br> <samp>65535=none</samp>, <samp>0=last</samp></td></tr>
+	<tr><td style="vertical-align: top;"><samp>SignHoldTime</samp></td><td><a href="#Binary">Binary</a></td><td>312</td><td>8</td><td>Time in ms, N * 25 = ms    minMs=50 (n=2) maxMs=6375 (n=255)<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>PrioSamplTime</samp></td><td><a href="#Binary">Binary</a></td><td>320</td><td>8</td><td>Time in ms, N * 250 = ms   minMs=750 (n=3) maxMs=6375 (n=255) maxMs=7750 (n=31)<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember01</samp></td><td><a href="#Binary">Binary</a></td><td>336</td><td>16</td><td>Set to a valid position in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember02</samp></td><td><a href="#Binary">Binary</a></td><td>352</td><td>16</td><td>Set to a valid position in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember03</samp></td><td><a href="#Binary">Binary</a></td><td>368</td><td>16</td><td>Set to a valid position in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember04</samp></td><td><a href="#Binary">Binary</a></td><td>384</td><td>16</td><td>Set to a valid position in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember05</samp></td><td><a href="#Binary">Binary</a></td><td>400</td><td>16</td><td>Set to a valid position in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember06</samp></td><td><a href="#Binary">Binary</a></td><td>416</td><td>16</td><td>Set to a valid position in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember07</samp></td><td><a href="#Binary">Binary</a></td><td>432</td><td>16</td><td>Set to a valid position in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember08</samp></td><td><a href="#Binary">Binary</a></td><td>448</td><td>16</td><td>Set to a valid position in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember09</samp></td><td><a href="#Binary">Binary</a></td><td>464</td><td>16</td><td>Set to a valid position in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember10</samp></td><td><a href="#Binary">Binary</a></td><td>480</td><td>16</td><td>Set to a valid position in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember11</samp></td><td><a href="#Binary">Binary</a></td><td>496</td><td>16</td><td>Set to a valid position in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember12</samp></td><td><a href="#Binary">Binary</a></td><td>512</td><td>16</td><td>Set to a valid position in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember13</samp></td><td><a href="#Binary">Binary</a></td><td>528</td><td>16</td><td>Set to a valid position in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember14</samp></td><td><a href="#Binary">Binary</a></td><td>544</td><td>16</td><td>Set to a valid position in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember15</samp></td><td><a href="#Binary">Binary</a></td><td>560</td><td>16</td><td>Set to a valid position in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember16</samp></td><td><a href="#Binary">Binary</a></td><td>576</td><td>16</td><td>Set to a valid position in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember17</samp></td><td><a href="#Binary">Binary</a></td><td>592</td><td>16</td><td>Set to a valid position in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember18</samp></td><td><a href="#Binary">Binary</a></td><td>608</td><td>16</td><td>Set to a valid position in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember19</samp></td><td><a href="#Binary">Binary</a></td><td>624</td><td>16</td><td>Set to a valid position in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember20</samp></td><td><a href="#Binary">Binary</a></td><td>640</td><td>16</td><td>Set to a valid position in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember21</samp></td><td><a href="#Binary">Binary</a></td><td>656</td><td>16</td><td>Set to a valid position in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember22</samp></td><td><a href="#Binary">Binary</a></td><td>672</td><td>16</td><td>Set to a valid position in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember23</samp></td><td><a href="#Binary">Binary</a></td><td>688</td><td>16</td><td>Set to a valid position in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember24</samp></td><td><a href="#Binary">Binary</a></td><td>704</td><td>16</td><td>Set to a valid position in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember25</samp></td><td><a href="#Binary">Binary</a></td><td>720</td><td>16</td><td>Set to a valid position in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember26</samp></td><td><a href="#Binary">Binary</a></td><td>736</td><td>16</td><td>Set to a valid position in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember27</samp></td><td><a href="#Binary">Binary</a></td><td>752</td><td>16</td><td>Set to a valid position in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember28</samp></td><td><a href="#Binary">Binary</a></td><td>768</td><td>16</td><td>Set to a valid position in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember29</samp></td><td><a href="#Binary">Binary</a></td><td>784</td><td>16</td><td>Set to a valid position in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember30</samp></td><td><a href="#Binary">Binary</a></td><td>800</td><td>16</td><td>Set to a valid position in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember31</samp></td><td><a href="#Binary">Binary</a></td><td>816</td><td>16</td><td>Set to a valid position in table <samp>ChannelInformation</samp>.<br></td></tr>
+</table>
+<h2>Table: <samp>TextMessage</samp></h2>
+<table>
+	<tr><td>Maximum number of lines</td><td>50</td></tr>
+	<tr><td>First record offset (octets)</td><td>0x23A5 (9125)</td></tr>
+	<tr><td>Record length (octets)</td><td>0x120 (288)</td></tr>
+	<tr><td>Number or records</td><td>0x32</td></tr>
+	<tr><td>All records range</td><td>0x23A5 - 0x5BE5</td></tr>
+	<tr><td>Default zero value</td><td>0x00</td></tr>
+</table>
+<h3>Deletion markers:</h3>
+<table>
+	<tr class="tableHeader"><td class="tableHeader">Offset bits</td><td class="tableHeader">Len.bits</td><td class="tableHeader">Value</td></tr>
+	<tr><td>0</td><td>8</td><td>0x00 (0)</td></tr>
+</table>
+<h3>Fields format:</h3>
+<table>
+	<tr class="tableHeader"><td class="tableHeader">Name</td><td class="tableHeader">Type</td><td class="tableHeader">Offset<br>bits</td><td class="tableHeader">Len<br>bits</td><td class="tableHeader">Notes</td></tr>
+	<tr><td style="vertical-align: top;"><samp>Text</samp></td><td><a href="#Unicode">Unicode</a></td><td>0</td><td>2304</td><td>Maximum length: 144 characters.<br></td></tr>
+</table>
+<h2>Table: <samp>ZoneInformation</samp></h2>
+<table>
+	<tr><td>Maximum number of lines</td><td>250</td></tr>
+	<tr><td>First record offset (octets)</td><td>0x14C05 (84997)</td></tr>
+	<tr><td>Record length (octets)</td><td>0x40 (64)</td></tr>
+	<tr><td>Number or records</td><td>0xFA</td></tr>
+	<tr><td>All records range</td><td>0x14C05 - 0x18A85</td></tr>
+	<tr><td>Default zero value</td><td>0x00</td></tr>
+</table>
+<h3>Deletion markers:</h3>
+<table>
+	<tr class="tableHeader"><td class="tableHeader">Offset bits</td><td class="tableHeader">Len.bits</td><td class="tableHeader">Value</td></tr>
+	<tr><td>0</td><td>8</td><td>0x00 (0)</td></tr>
+</table>
+<h3>Fields format:</h3>
+<table>
+	<tr class="tableHeader"><td class="tableHeader">Name</td><td class="tableHeader">Type</td><td class="tableHeader">Offset<br>bits</td><td class="tableHeader">Len<br>bits</td><td class="tableHeader">Notes</td></tr>
+	<tr><td style="vertical-align: top;"><samp>Name</samp></td><td><a href="#Unicode">Unicode</a></td><td>0</td><td>256</td><td>Maximum length: 16 characters.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember01</samp></td><td><a href="#Binary">Binary</a></td><td>256</td><td>16</td><td>Set to a valid position in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember02</samp></td><td><a href="#Binary">Binary</a></td><td>272</td><td>16</td><td>Set to a valid position in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember03</samp></td><td><a href="#Binary">Binary</a></td><td>288</td><td>16</td><td>Set to a valid position in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember04</samp></td><td><a href="#Binary">Binary</a></td><td>304</td><td>16</td><td>Set to a valid position in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember05</samp></td><td><a href="#Binary">Binary</a></td><td>320</td><td>16</td><td>Set to a valid position in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember06</samp></td><td><a href="#Binary">Binary</a></td><td>336</td><td>16</td><td>Set to a valid position in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember07</samp></td><td><a href="#Binary">Binary</a></td><td>352</td><td>16</td><td>Set to a valid position in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember08</samp></td><td><a href="#Binary">Binary</a></td><td>368</td><td>16</td><td>Set to a valid position in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember09</samp></td><td><a href="#Binary">Binary</a></td><td>384</td><td>16</td><td>Set to a valid position in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember10</samp></td><td><a href="#Binary">Binary</a></td><td>400</td><td>16</td><td>Set to a valid position in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember11</samp></td><td><a href="#Binary">Binary</a></td><td>416</td><td>16</td><td>Set to a valid position in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember12</samp></td><td><a href="#Binary">Binary</a></td><td>432</td><td>16</td><td>Set to a valid position in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember13</samp></td><td><a href="#Binary">Binary</a></td><td>448</td><td>16</td><td>Set to a valid position in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember14</samp></td><td><a href="#Binary">Binary</a></td><td>464</td><td>16</td><td>Set to a valid position in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember15</samp></td><td><a href="#Binary">Binary</a></td><td>480</td><td>16</td><td>Set to a valid position in table <samp>ChannelInformation</samp>.<br></td></tr>
+	<tr><td style="vertical-align: top;"><samp>ChannelMember16</samp></td><td><a href="#Binary">Binary</a></td><td>496</td><td>16</td><td>Set to a valid position in table <samp>ChannelInformation</samp>.<br></td></tr>
+</table>
