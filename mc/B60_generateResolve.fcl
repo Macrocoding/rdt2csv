@@ -279,7 +279,7 @@ impl FieldTypeNumeric::generateBindFunction {
 	}
 	cFile <<
 %F		%1/* BIND FIELD %0«fieldId»%1 */
-%0		%1if (%0«boundTableLink.%fkeyField%F.fieldType.getBindReferenceFunc()»%1 (DESC_%0«recId»%1+%0«fieldPos»%1, &%0«fld»%1, container->%0«boundTableLink.%frecordId%F»%1_COUNT, container->%0«boundTableLink.%frecordId%F»%1[%0«fld»%1.refLineNo-1].%0«boundTableLink.%fkeyField%F.fieldId»%1, "%0«recId»%1", i, "%0«fieldId»%1", "%0«boundTableLink.%frecordId%F»%1", reportErrorFunc, reportErrorParam)) noOfViolations++;
+%0		%1if (%0«boundTableLink.%fkeyField%F.fieldType.getBindReferenceFunc()»%1 (DESC_%0«recId»%1+%0«fieldPos»%1, &%0«fld»%1, container->%0«boundTableLink.%frecordId%F»%1_COUNT, container->%0«boundTableLink.%frecordId%F»%1[(%0«fld»%1.refLineNo > 0) ? %0«fld»%1.refLineNo-1 : 0].%0«boundTableLink.%fkeyField%F.fieldId»%1, "%0«recId»%1", i, "%0«fieldId»%1", "%0«boundTableLink.%frecordId%F»%1", reportErrorFunc, reportErrorParam)) noOfViolations++;
 %0	;%f
 
 	if (rep >= 1) {

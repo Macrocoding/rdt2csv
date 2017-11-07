@@ -64,32 +64,32 @@ int bindReferences(TRDTFile* container, ReportErrorFunc reportErrorFunc, void* r
 	/* Bind references for record ChannelInformation */
 	for (i=0; i<COUNT_ChannelInformation; i++) {
 		/* BIND FIELD ContactName */
-		if (md380_BindReferenceNumeric (DESC_ChannelInformation+23, &container->ChannelInformation[i].ContactName, container->DigitalContact_COUNT, container->DigitalContact[container->ChannelInformation[i].ContactName.refLineNo-1].CallId, "ChannelInformation", i, "ContactName", "DigitalContact", reportErrorFunc, reportErrorParam)) noOfViolations++;
+		if (md380_BindReferenceNumeric (DESC_ChannelInformation+23, &container->ChannelInformation[i].ContactName, container->DigitalContact_COUNT, container->DigitalContact[(container->ChannelInformation[i].ContactName.refLineNo > 0) ? container->ChannelInformation[i].ContactName.refLineNo-1 : 0].CallId, "ChannelInformation", i, "ContactName", "DigitalContact", reportErrorFunc, reportErrorParam)) noOfViolations++;
 		/* BIND FIELD ScanList */
-		if (md380_BindReferenceUnicode (DESC_ChannelInformation+27, &container->ChannelInformation[i].ScanList, container->ScanList_COUNT, container->ScanList[container->ChannelInformation[i].ScanList.refLineNo-1].Name, "ChannelInformation", i, "ScanList", "ScanList", reportErrorFunc, reportErrorParam)) noOfViolations++;
+		if (md380_BindReferenceUnicode (DESC_ChannelInformation+27, &container->ChannelInformation[i].ScanList, container->ScanList_COUNT, container->ScanList[(container->ChannelInformation[i].ScanList.refLineNo > 0) ? container->ChannelInformation[i].ScanList.refLineNo-1 : 0].Name, "ChannelInformation", i, "ScanList", "ScanList", reportErrorFunc, reportErrorParam)) noOfViolations++;
 		/* BIND FIELD GroupList */
-		if (md380_BindReferenceUnicode (DESC_ChannelInformation+28, &container->ChannelInformation[i].GroupList, container->DigitalRxGroupList_COUNT, container->DigitalRxGroupList[container->ChannelInformation[i].GroupList.refLineNo-1].Name, "ChannelInformation", i, "GroupList", "DigitalRxGroupList", reportErrorFunc, reportErrorParam)) noOfViolations++;
+		if (md380_BindReferenceUnicode (DESC_ChannelInformation+28, &container->ChannelInformation[i].GroupList, container->DigitalRxGroupList_COUNT, container->DigitalRxGroupList[(container->ChannelInformation[i].GroupList.refLineNo > 0) ? container->ChannelInformation[i].GroupList.refLineNo-1 : 0].Name, "ChannelInformation", i, "GroupList", "DigitalRxGroupList", reportErrorFunc, reportErrorParam)) noOfViolations++;
 	}
 	
 	/* Bind references for record DigitalRxGroupList */
 	for (i=0; i<COUNT_DigitalRxGroupList; i++) {
 		for (j=0; j<32; j++) {
 			/* BIND FIELD ContactMember */
-			if (md380_BindReferenceNumeric (DESC_DigitalRxGroupList+1, &container->DigitalRxGroupList[i].ContactMember[j], container->DigitalContact_COUNT, container->DigitalContact[container->DigitalRxGroupList[i].ContactMember[j].refLineNo-1].CallId, "DigitalRxGroupList", i, "ContactMember", "DigitalContact", reportErrorFunc, reportErrorParam)) noOfViolations++;
+			if (md380_BindReferenceNumeric (DESC_DigitalRxGroupList+1, &container->DigitalRxGroupList[i].ContactMember[j], container->DigitalContact_COUNT, container->DigitalContact[(container->DigitalRxGroupList[i].ContactMember[j].refLineNo > 0) ? container->DigitalRxGroupList[i].ContactMember[j].refLineNo-1 : 0].CallId, "DigitalRxGroupList", i, "ContactMember", "DigitalContact", reportErrorFunc, reportErrorParam)) noOfViolations++;
 		}
 	}
 	
 	/* Bind references for record ScanList */
 	for (i=0; i<COUNT_ScanList; i++) {
 		/* BIND FIELD PriorityCh1 */
-		if (md380_BindReferenceUnicode (DESC_ScanList+1, &container->ScanList[i].PriorityCh1, container->ChannelInformation_COUNT, container->ChannelInformation[container->ScanList[i].PriorityCh1.refLineNo-1].Name, "ScanList", i, "PriorityCh1", "ChannelInformation", reportErrorFunc, reportErrorParam)) noOfViolations++;
+		if (md380_BindReferenceUnicode (DESC_ScanList+1, &container->ScanList[i].PriorityCh1, container->ChannelInformation_COUNT, container->ChannelInformation[(container->ScanList[i].PriorityCh1.refLineNo > 0) ? container->ScanList[i].PriorityCh1.refLineNo-1 : 0].Name, "ScanList", i, "PriorityCh1", "ChannelInformation", reportErrorFunc, reportErrorParam)) noOfViolations++;
 		/* BIND FIELD PriorityCh2 */
-		if (md380_BindReferenceUnicode (DESC_ScanList+2, &container->ScanList[i].PriorityCh2, container->ChannelInformation_COUNT, container->ChannelInformation[container->ScanList[i].PriorityCh2.refLineNo-1].Name, "ScanList", i, "PriorityCh2", "ChannelInformation", reportErrorFunc, reportErrorParam)) noOfViolations++;
+		if (md380_BindReferenceUnicode (DESC_ScanList+2, &container->ScanList[i].PriorityCh2, container->ChannelInformation_COUNT, container->ChannelInformation[(container->ScanList[i].PriorityCh2.refLineNo > 0) ? container->ScanList[i].PriorityCh2.refLineNo-1 : 0].Name, "ScanList", i, "PriorityCh2", "ChannelInformation", reportErrorFunc, reportErrorParam)) noOfViolations++;
 		/* BIND FIELD TXDesignatedCh */
-		if (md380_BindReferenceUnicode (DESC_ScanList+3, &container->ScanList[i].TXDesignatedCh, container->ChannelInformation_COUNT, container->ChannelInformation[container->ScanList[i].TXDesignatedCh.refLineNo-1].Name, "ScanList", i, "TXDesignatedCh", "ChannelInformation", reportErrorFunc, reportErrorParam)) noOfViolations++;
+		if (md380_BindReferenceUnicode (DESC_ScanList+3, &container->ScanList[i].TXDesignatedCh, container->ChannelInformation_COUNT, container->ChannelInformation[(container->ScanList[i].TXDesignatedCh.refLineNo > 0) ? container->ScanList[i].TXDesignatedCh.refLineNo-1 : 0].Name, "ScanList", i, "TXDesignatedCh", "ChannelInformation", reportErrorFunc, reportErrorParam)) noOfViolations++;
 		for (j=0; j<31; j++) {
 			/* BIND FIELD ChannelMember */
-			if (md380_BindReferenceUnicode (DESC_ScanList+6, &container->ScanList[i].ChannelMember[j], container->ChannelInformation_COUNT, container->ChannelInformation[container->ScanList[i].ChannelMember[j].refLineNo-1].Name, "ScanList", i, "ChannelMember", "ChannelInformation", reportErrorFunc, reportErrorParam)) noOfViolations++;
+			if (md380_BindReferenceUnicode (DESC_ScanList+6, &container->ScanList[i].ChannelMember[j], container->ChannelInformation_COUNT, container->ChannelInformation[(container->ScanList[i].ChannelMember[j].refLineNo > 0) ? container->ScanList[i].ChannelMember[j].refLineNo-1 : 0].Name, "ScanList", i, "ChannelMember", "ChannelInformation", reportErrorFunc, reportErrorParam)) noOfViolations++;
 		}
 	}
 	
@@ -97,7 +97,7 @@ int bindReferences(TRDTFile* container, ReportErrorFunc reportErrorFunc, void* r
 	for (i=0; i<COUNT_ZoneInformation; i++) {
 		for (j=0; j<16; j++) {
 			/* BIND FIELD ChannelMember */
-			if (md380_BindReferenceUnicode (DESC_ZoneInformation+1, &container->ZoneInformation[i].ChannelMember[j], container->ChannelInformation_COUNT, container->ChannelInformation[container->ZoneInformation[i].ChannelMember[j].refLineNo-1].Name, "ZoneInformation", i, "ChannelMember", "ChannelInformation", reportErrorFunc, reportErrorParam)) noOfViolations++;
+			if (md380_BindReferenceUnicode (DESC_ZoneInformation+1, &container->ZoneInformation[i].ChannelMember[j], container->ChannelInformation_COUNT, container->ChannelInformation[(container->ZoneInformation[i].ChannelMember[j].refLineNo > 0) ? container->ZoneInformation[i].ChannelMember[j].refLineNo-1 : 0].Name, "ZoneInformation", i, "ChannelMember", "ChannelInformation", reportErrorFunc, reportErrorParam)) noOfViolations++;
 		}
 	}
 

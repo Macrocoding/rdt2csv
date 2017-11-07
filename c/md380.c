@@ -1377,7 +1377,7 @@ void decodeBinary_TRDTFile (const t_buffer* buffer, TRDTFile* container)
 	container->DigitalContact_COUNT = 0;
 	
 	for (i=0; i<1000; i++) {
-		if ((bitsToNumeric (buffer, (OFFSET_DigitalContact+i*LENGTH_DigitalContact) * 8 + 0, 8) == 255) && (bitsToNumeric (buffer, (OFFSET_DigitalContact+i*LENGTH_DigitalContact) * 8 + 8, 8) == 255) && (bitsToNumeric (buffer, (OFFSET_DigitalContact+i*LENGTH_DigitalContact) * 8 + 16, 8) == 255)) {
+		if ((bitsToNumeric (buffer, (OFFSET_DigitalContact+i*LENGTH_DigitalContact) * 8 + 32, 8) == 0) && (bitsToNumeric (buffer, (OFFSET_DigitalContact+i*LENGTH_DigitalContact) * 8 + 40, 8) == 0)) {
 			break;
 		}
 		decodeBinary_DigitalContact (buffer, OFFSET_DigitalContact+i*LENGTH_DigitalContact, container->DigitalContact+i);

@@ -202,9 +202,11 @@ record DigitalContact [cont]
 	length = 36
 	count = 1000
 
-	deletionMarker      8 bit,   0 value = 0xFF
-	deletionMarker      8 bit,   8 value = 0xFF
-	deletionMarker      8 bit,  16 value = 0xFF
+	#deletionMarker      8 bit,   0 value = 0xFF
+	#deletionMarker      8 bit,   8 value = 0xFF
+	#deletionMarker      8 bit,  16 value = 0xFF
+	deletionMarker      8 bit,  32 value = 0x00  # Reported by Dale Farnsworth
+	deletionMarker      8 bit,  40 value = 0x00
 	CallId key         24 bit,   0 binary #: (min=0, max=16776415 0xFFFCDF) CallIds must be unique
 	fixed               2 bit,  24 value=0b11
 	CallReceiveTone     1 bit,  26 binary enum {0="off" 1="on"}
